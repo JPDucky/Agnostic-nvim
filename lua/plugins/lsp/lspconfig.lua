@@ -177,7 +177,10 @@ return {
 
         lua_ls = {
           Lua = {
-            workspace = { checkThirdParty = false },
+            runtime = {
+              version = 'LuaJIT'
+            },
+            workspace = { checkThirdParty = true },
             telemetry = { enable = false },
           },
         },

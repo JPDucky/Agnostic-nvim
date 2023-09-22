@@ -20,6 +20,7 @@ return {
       'debugloop/telescope-undo.nvim',
     },
     opts = {
+      --TODO: fix telescope-undo
       extensions = {
         undo = {},
       },
