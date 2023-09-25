@@ -19,8 +19,6 @@ vim.g.netrw_keepdir = 0
 
 vim.opt.scrolloff = 14
 
-vim.opt.timeoutlen = 100
-
 vim.opt.wrap = false
 
 -- Plugins:
@@ -81,15 +79,6 @@ require("lazy").setup({
     },
   },
 
-  -- -- Themes
-  --   {
-  --     -- Theme inspired by Atom
-  --     "navarasu/onedark.nvim",
-  --     priority = 1000,
-  --     config = function()
-  --       vim.cmd.colorscheme "onedark"
-  --     end,
-  --   },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I"ve included in the kickstart repository.
@@ -110,6 +99,7 @@ require("lazy").setup({
   { import = "plugins.lsp" },
   { import = "plugins.themes" },
   { import = "plugins.debug" },
+  --NOTE: Plugins in the /after directory will be loaded "after" the ones in the /plugin directory
   { import = "after.plugins" },
 
 }, {})

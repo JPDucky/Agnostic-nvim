@@ -1,4 +1,5 @@
 return {
+  --TODO: make it search from project directory
   {
     'folke/todo-comments.nvim',
     dependencies = { "nvim-lua/plenary.nvim" },

@@ -24,6 +24,7 @@ return {
           vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
         end
 
+        --TODO: move these to keymaps file
         nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
         nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
@@ -174,13 +175,14 @@ return {
         rust_analyzer = {},
         tsserver = {},
         html = { filetypes = { 'html', 'twig', 'hbs'} },
-
         lua_ls = {
           Lua = {
             runtime = {
               version = 'LuaJIT'
             },
-            workspace = { checkThirdParty = true },
+            workspace = {
+              checkThirdParty = true,
+            },
             telemetry = { enable = false },
           },
         },

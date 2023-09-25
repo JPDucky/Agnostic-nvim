@@ -129,6 +129,7 @@ return {
     },
   },
 }
+-- TODO: set up extensions
 -- TODO: configure ->
 -- -- [[ Configure Treesitter ]]
 -- -- See `:help nvim-treesitter`

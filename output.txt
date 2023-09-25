@@ -1,0 +1,664 @@
+
+
+--- Autocommands ---
+BufferlineCmds  BufAdd
+    *         <Lua 747: ~/.local/share/nvim/lazy/bufferline.nvim/lua/bufferline.lua:127>
+              treesitter_context_update  BufDelete
+    *         <Lua 106: ~/.local/share/nvim/lazy/nvim-treesitter-context/lua/treesitter-context.lua:144>
+              luasnip  BufDelete
+    *         <Lua 311: ~/.local/share/nvim/lazy/LuaSnip/lua/luasnip/config.lua:253>
+              treesitter_context_update  BufEnter
+    *         <Lua 102: ~/.local/share/nvim/lazy/nvim-treesitter-context/lua/treesitter-context.lua:21>
+              rhubarb  BufEnter
+    *         if expand('%') ==# '' && &previewwindow && pumvisible() && getbufvar('#', '&omnifunc') ==# 'rhubarb#omnifunc' |    setlocal nolist linebreak filetype=markdown | endif
+              Trouble  BufEnter
+    *         lua require("trouble").action("on_win_enter")
+              lualine  BufEnter
+    *         lua require'lualine.components.branch.git_branch'.find_git_dir()
+
+              lua require'lualine.components.diff.git_diff'.update_diff_args()
+              lualine_stl_refresh  BufEnter
+    *         call v:lua.require'lualine'.refresh({'kind': 'tabpage', 'place': ['statusline'], 'trigger': 'autocmd'})
+              FileExplorer  BufEnter
+    *         sil call s:LocalBrowse(expand("<amatch>"))
+              BufEnter
+    *         <Lua 744: ~/.local/share/nvim/lazy/bufferline.nvim/lua/bufferline.lua:139>
+              fugitive  BufFilePost
+    *         unlet! b:git_dir
+              sleuth  BufFilePost
+    *         if (@% !~# '^!' || exists('b:sleuth')) && get(g:, 'sleuth_automatic', 1) | exe s:AutoInit() | endif
+              editorconfig  BufFilePost
+    *         <Lua 387: /usr/share/nvim/runtime/plugin/editorconfig.lua:4>
+              treesitter_context_update  BufLeave
+    *         <Lua 109: ~/.local/share/nvim/lazy/nvim-treesitter-context/lua/treesitter-context.lua:38>
+              matchup_matchparen  BufLeave
+    *         call s:matchparen.clear()
+              FileExplorer  BufLeave
+    *         if &ft != "netrw"|let w:netrw_prvfile= expand("%:p")|endif
+              Fedora  BufNewFile
+    *.spec    silent! 0read /usr/share/nvim/template.spec
+              lazy_handler_event  BufNewFile
+    *         <Lua 50: ~/.local/share/nvim/lazy/lazy.nvim/lua/lazy/core/handler/event.lua:26>
+              filetypedetect  BufNewFile
+    *         <Lua 62: /usr/share/nvim/runtime/filetype.lua:10>
+
+              if !did_filetype() && expand('<amatch>') !~ g:ft_ignore_pat | runtime! scripts.vim | endif
+              rhubarb  BufNewFile
+    *.git/{PULLREQ_EDIT,ISSUE_EDIT,RELEASE_EDIT}MSGif &ft ==# '' || &ft ==# 'conf' |   set ft=gitcommit | endif
+              fugitive  BufNewFile
+    *         if exists('b:git_dir') && b:git_dir =~# '^$\|' . s:bad_git_dir |   unlet b:git_dir | endif
+              dap-launch.json  BufNewFile
+    */.vscode/launch.json<Lua 202: ~/.local/share/nvim/lazy/nvim-dap/plugin/dap.lua:37>
+              sleuth  BufNewFile
+    *         if get(g:, 'sleuth_automatic', 1) | exe s:AutoInit() | endif
+              editorconfig  BufNewFile
+    *         <Lua 385: /usr/share/nvim/runtime/plugin/editorconfig.lua:4>
+              gitsigns  BufNewFile
+    *         <Lua 905: ~/.local/share/nvim/lazy/gitsigns.nvim/lua/gitsigns.lua:132>
+              nvim_terminal  BufReadCmd
+    term://*  if !exists('b:term_title')|call termopen(matchstr(expand("<amatch>"), '\c\mterm://\%(.\{-}//\%(\d\+:\)\?\)\?\zs.*'), {'cwd': expand(get(matchlist(expand("<amatch>"), '\c\mterm://\(.\{-}\)//'), 1, ''))})
+              fugitive  BufReadCmd
+    index{,.lock}if FugitiveIsGitDir(expand('<amatch>:p:h')) |   let b:git_dir = s:Slash(expand('<amatch>:p:h')) |   exe fugitive#BufReadStatus(v:cmdbang) |   echohl WarningMSG |   echo "fugitive: Direct editing of .git/" . expand('%:t') . " is deprecated" |   echohl NONE | elseif filereadable(expand('<amatch>')) |   silent doautocmd BufReadPre |   keepalt noautocmd read <amatch> |   silent 1delete_ |   silent doautocmd BufReadPost | else |   silent doautocmd BufNewFile | endif
+    fugitive://*exe fugitive#BufReadCmd() | if &path =~# '^\.\%(,\|$\)' |   let &l:path = substitute(&path, '^\.,\=', '', '') | endif
+              man  BufReadCmd
+    man://*   <Lua 390: /usr/share/nvim/runtime/plugin/man.lua:31>
+              Network  BufReadCmd
+    file://*  call netrw#FileUrlEdit(expand("<amatch>"))
+    ftp://*   exe "sil doau BufReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(2,expand("<amatch>"))|exe "sil doau BufReadPost ".fnameescape(expand("<amatch>"))
+    rcp://*   exe "sil doau BufReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(2,expand("<amatch>"))|exe "sil doau BufReadPost ".fnameescape(expand("<amatch>"))
+    scp://*   exe "sil doau BufReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(2,expand("<amatch>"))|exe "sil doau BufReadPost ".fnameescape(expand("<amatch>"))
+    http://*  exe "sil doau BufReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(2,expand("<amatch>"))|exe "sil doau BufReadPost ".fnameescape(expand("<amatch>"))
+    https://* exe "sil doau BufReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(2,expand("<amatch>"))|exe "sil doau BufReadPost ".fnameescape(expand("<amatch>"))
+    dav://*   exe "sil doau BufReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(2,expand("<amatch>"))|exe "sil doau BufReadPost ".fnameescape(expand("<amatch>"))
+    davs://*  exe "sil doau BufReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(2,expand("<amatch>"))|exe "sil doau BufReadPost ".fnameescape(expand("<amatch>"))
+    rsync://* exe "sil doau BufReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(2,expand("<amatch>"))|exe "sil doau BufReadPost ".fnameescape(expand("<amatch>"))
+    sftp://*  exe "sil doau BufReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(2,expand("<amatch>"))|exe "sil doau BufReadPost ".fnameescape(expand("<amatch>"))
+              ShaDaCommands  BufReadCmd
+    *.shada   :if !empty(v:cmdarg)|throw '++opt not supported'|endif |call setline('.', shada#get_strings(readfile(expand('<afile>'),'b'))) |setlocal filetype=shada
+    *.shada.tmp.[a-z]:if !empty(v:cmdarg)|throw '++opt not supported'|endif |call setline('.', shada#get_strings(readfile(expand('<afile>'),'b'))) |setlocal filetype=shada
+              tar  BufReadCmd
+    tarfile::*call tar#Read(expand("<amatch>"), 1)
+    tarfile::*/*call tar#Read(expand("<amatch>"), 1)
+    *.tar.gz  call tar#Browse(expand("<amatch>"))
+    *.tar     call tar#Browse(expand("<amatch>"))
+    *.lrp     call tar#Browse(expand("<amatch>"))
+    *.tar.bz2 call tar#Browse(expand("<amatch>"))
+    *.tar.Z   call tar#Browse(expand("<amatch>"))
+    *.tbz     call tar#Browse(expand("<amatch>"))
+    *.tgz     call tar#Browse(expand("<amatch>"))
+    *.tar.lzmacall tar#Browse(expand("<amatch>"))
+    *.tar.xz  call tar#Browse(expand("<amatch>"))
+    *.txz     call tar#Browse(expand("<amatch>"))
+    *.tar.zst call tar#Browse(expand("<amatch>"))
+    *.tzs     call tar#Browse(expand("<amatch>"))
+              zip  BufReadCmd
+    zipfile:* call zip#Read(expand("<amatch>"), 1)
+    zipfile:*/*call zip#Read(expand("<amatch>"), 1)
+    *.aar     call zip#Browse(expand("<amatch>"))
+    *.apk     call zip#Browse(expand("<amatch>"))
+    *.celzip  call zip#Browse(expand("<amatch>"))
+    *.crtx    call zip#Browse(expand("<amatch>"))
+    *.docm    call zip#Browse(expand("<amatch>"))
+    *.docx    call zip#Browse(expand("<amatch>"))
+    *.dotm    call zip#Browse(expand("<amatch>"))
+    *.dotx    call zip#Browse(expand("<amatch>"))
+    *.ear     call zip#Browse(expand("<amatch>"))
+    *.epub    call zip#Browse(expand("<amatch>"))
+    *.gcsx    call zip#Browse(expand("<amatch>"))
+    *.glox    call zip#Browse(expand("<amatch>"))
+    *.gqsx    call zip#Browse(expand("<amatch>"))
+    *.ja      call zip#Browse(expand("<amatch>"))
+    *.jar     call zip#Browse(expand("<amatch>"))
+    *.kmz     call zip#Browse(expand("<amatch>"))
+    *.odb     call zip#Browse(expand("<amatch>"))
+    *.odc     call zip#Browse(expand("<amatch>"))
+    *.odf     call zip#Browse(expand("<amatch>"))
+    *.odg     call zip#Browse(expand("<amatch>"))
+    *.odi     call zip#Browse(expand("<amatch>"))
+    *.odm     call zip#Browse(expand("<amatch>"))
+    *.odp     call zip#Browse(expand("<amatch>"))
+    *.ods     call zip#Browse(expand("<amatch>"))
+    *.odt     call zip#Browse(expand("<amatch>"))
+    *.otc     call zip#Browse(expand("<amatch>"))
+    *.otf     call zip#Browse(expand("<amatch>"))
+    *.otg     call zip#Browse(expand("<amatch>"))
+    *.oth     call zip#Browse(expand("<amatch>"))
+    *.oti     call zip#Browse(expand("<amatch>"))
+    *.otp     call zip#Browse(expand("<amatch>"))
+    *.ots     call zip#Browse(expand("<amatch>"))
+    *.ott     call zip#Browse(expand("<amatch>"))
+    *.oxt     call zip#Browse(expand("<amatch>"))
+    *.potm    call zip#Browse(expand("<amatch>"))
+    *.potx    call zip#Browse(expand("<amatch>"))
+    *.ppam    call zip#Browse(expand("<amatch>"))
+    *.ppsm    call zip#Browse(expand("<amatch>"))
+    *.ppsx    call zip#Browse(expand("<amatch>"))
+    *.pptm    call zip#Browse(expand("<amatch>"))
+    *.pptx    call zip#Browse(expand("<amatch>"))
+    *.sldx    call zip#Browse(expand("<amatch>"))
+    *.thmx    call zip#Browse(expand("<amatch>"))
+    *.vdw     call zip#Browse(expand("<amatch>"))
+    *.war     call zip#Browse(expand("<amatch>"))
+    *.wsz     call zip#Browse(expand("<amatch>"))
+    *.xap     call zip#Browse(expand("<amatch>"))
+    *.xlam    call zip#Browse(expand("<amatch>"))
+
+              call zip#Browse(expand("<amatch>"))
+    *.xlsb    call zip#Browse(expand("<amatch>"))
+    *.xlsm    call zip#Browse(expand("<amatch>"))
+    *.xlsx    call zip#Browse(expand("<amatch>"))
+    *.xltm    call zip#Browse(expand("<amatch>"))
+    *.xltx    call zip#Browse(expand("<amatch>"))
+    *.xpi     call zip#Browse(expand("<amatch>"))
+    *.zip     call zip#Browse(expand("<amatch>"))
+              filetypedetect  BufReadPost
+    *         <Lua 61: /usr/share/nvim/runtime/filetype.lua:10>
+
+              if !did_filetype() && expand('<amatch>') !~ g:ft_ignore_pat | runtime! scripts.vim | endif
+              treesitter_context_update  BufReadPost
+    *         <Lua 105: ~/.local/share/nvim/lazy/nvim-treesitter-context/lua/treesitter-context.lua:137>
+              matchup_matchparen  BufReadPost
+    *         call s:matchparen.transmute_reset()
+              rhubarb  BufReadPost
+    *.git/{PULLREQ_EDIT,ISSUE_EDIT,RELEASE_EDIT}MSGif &ft ==# '' || &ft ==# 'conf' |   set ft=gitcommit | endif
+              fugitive  BufReadPost
+    *         if exists('b:git_dir') && b:git_dir =~# '^$\|' . s:bad_git_dir |   unlet b:git_dir | endif
+              filetypedetect  BufReadPost
+    *.fugitiveblamesetfiletype fugitiveblame
+              sleuth  BufReadPost
+    *         if get(g:, 'sleuth_automatic', 1) | exe s:AutoInit() | endif
+              editorconfig  BufReadPost
+    *         <Lua 386: /usr/share/nvim/runtime/plugin/editorconfig.lua:4>
+              gzip  BufReadPost
+    *.gz      call gzip#read("gzip -dn")
+    *.bz2     call gzip#read("bzip2 -d")
+    *.Z       call gzip#read("uncompress")
+    *.lzma    call gzip#read("lzma -d")
+    *.xz      call gzip#read("xz -d")
+    *.lz      call gzip#read("lzip -d")
+    *.zst     call gzip#read("zstd -d --rm")
+    *.br      call gzip#read("brotli -d --rm")
+    *.lzo     call gzip#read("lzop -d -U")
+              BufReadPost
+    *         <Lua 745: ~/.local/share/nvim/lazy/bufferline.nvim/lua/bufferline.lua:134>
+              gitsigns  BufReadPost
+    *         <Lua 904: ~/.local/share/nvim/lazy/gitsigns.nvim/lua/gitsigns.lua:132>
+              gzip  BufReadPre
+    *.gz      setlocal bin
+    *.bz2     setlocal bin
+    *.Z       setlocal bin
+    *.lzma    setlocal bin
+    *.xz      setlocal bin
+    *.lz      setlocal bin
+    *.zst     setlocal bin
+    *.br      setlocal bin
+    *.lzo     setlocal bin
+              matchup_filetype  BufWinEnter
+    *         call matchup#loader#bufwinenter()
+              DapuiWindowsSetup  BufWinEnter
+    *         <Lua 214: ~/.local/share/nvim/lazy/nvim-dap-ui/lua/dapui/windows/init.lua:107>
+              Trouble  BufWinEnter
+    *         lua require("trouble").action("on_win_enter")
+              _luasnip_lazy_load  BufWinEnter
+    *         <Lua 277: ~/.local/share/nvim/lazy/LuaSnip/plugin/luasnip.lua:86>
+
+              <Lua 279: ~/.local/share/nvim/lazy/LuaSnip/plugin/luasnip.lua:94>
+
+              <Lua 281: ~/.local/share/nvim/lazy/LuaSnip/plugin/luasnip.lua:102>
+              IndentBlanklineAutogroup  BufWinEnter
+    *         IndentBlanklineRefresh
+              Todo  BufWinEnter
+    *         lua require("todo-comments.highlight").attach()
+              vim_lsp_semantic_tokens:1  BufWinEnter
+    <buffer=1><Lua 370: /usr/share/nvim/runtime/lua/vim/lsp/semantic_tokens.lua:211>
+              nui_2_unmount  BufWinEnter
+    *         <Lua 1090: ~/.local/share/nvim/lazy/nui.nvim/lua/nui/popup/init.lua:224>
+              DapuiWindowsSetup  BufWinLeave
+    *         <Lua 215: ~/.local/share/nvim/lazy/nvim-dap-ui/lua/dapui/windows/init.lua:107>
+              luasnip  BufWipeout
+    *         <Lua 312: ~/.local/share/nvim/lazy/LuaSnip/lua/luasnip/config.lua:253>
+              DiagnosticBufWipeout  BufWipeout
+    <buffer=1><Lua 345: /usr/share/nvim/runtime/lua/vim/diagnostic.lua:58>
+              fugitive  BufWriteCmd
+    fugitive://*exe fugitive#BufWriteCmd()
+              Network  BufWriteCmd
+    ftp://*   exe "sil doau BufWritePre ".fnameescape(expand("<amatch>"))|exe 'Nwrite '.fnameescape(expand("<amatch>"))|exe "sil doau BufWritePost ".fnameescape(expand("<amatch>"))
+    rcp://*   exe "sil doau BufWritePre ".fnameescape(expand("<amatch>"))|exe 'Nwrite '.fnameescape(expand("<amatch>"))|exe "sil doau BufWritePost ".fnameescape(expand("<amatch>"))
+    scp://*   exe "sil doau BufWritePre ".fnameescape(expand("<amatch>"))|exe 'Nwrite '.fnameescape(expand("<amatch>"))|exe "sil doau BufWritePost ".fnameescape(expand("<amatch>"))
+    http://*  exe "sil doau BufWritePre ".fnameescape(expand("<amatch>"))|exe 'Nwrite '.fnameescape(expand("<amatch>"))|exe "sil doau BufWritePost ".fnameescape(expand("<amatch>"))
+    file://*  exe "sil doau BufWritePre ".fnameescape(expand("<amatch>"))|exe 'Nwrite '.fnameescape(expand("<amatch>"))|exe "sil doau BufWritePost ".fnameescape(expand("<amatch>"))
+    dav://*   exe "sil doau BufWritePre ".fnameescape(expand("<amatch>"))|exe 'Nwrite '.fnameescape(expand("<amatch>"))|exe "sil doau BufWritePost ".fnameescape(expand("<amatch>"))
+    davs://*  exe "sil doau BufWritePre ".fnameescape(expand("<amatch>"))|exe 'Nwrite '.fnameescape(expand("<amatch>"))|exe "sil doau BufWritePost ".fnameescape(expand("<amatch>"))
+    rsync://* exe "sil doau BufWritePre ".fnameescape(expand("<amatch>"))|exe 'Nwrite '.fnameescape(expand("<amatch>"))|exe "sil doau BufWritePost ".fnameescape(expand("<amatch>"))
+    sftp://*  exe "sil doau BufWritePre ".fnameescape(expand("<amatch>"))|exe 'Nwrite '.fnameescape(expand("<amatch>"))|exe "sil doau BufWritePost ".fnameescape(expand("<amatch>"))
+              ShaDaCommands  BufWriteCmd
+    *.shada   :if !empty(v:cmdarg)|throw '++opt not supported'|endif |if writefile(shada#get_binstrings(getline(1, '$')),expand('<afile>'), 'b') == 0 |  let &l:modified = (expand('<afile>') is# bufname(+expand('<abuf>'))? 0: stridx(&cpoptions, '+') != -1) |endif
+    *.shada.tmp.[a-z]:if !empty(v:cmdarg)|throw '++opt not supported'|endif |if writefile(shada#get_binstrings(getline(1, '$')),expand('<afile>'), 'b') == 0 |  let &l:modified = (expand('<afile>') is# bufname(+expand('<abuf>'))? 0: stridx(&cpoptions, '+') != -1) |endif
+              tar  BufWriteCmd
+    tarfile::*call tar#Write(expand("<amatch>"))
+    tarfile::*/*call tar#Write(expand("<amatch>"))
+              zip  BufWriteCmd
+    zipfile:* call zip#Write(expand("<amatch>"))
+    zipfile:*/*call zip#Write(expand("<amatch>"))
+              dap-launch.json  BufWritePost
+    */.vscode/launch.json<Lua 203: ~/.local/share/nvim/lazy/nvim-dap/plugin/dap.lua:56>
+              luasnip_watch_reload  BufWritePost
+    *         <Lua 273: ~/.local/share/nvim/lazy/LuaSnip/lua/luasnip/loaders/init.lua:149>
+              lualine  BufWritePost
+    *         lua require'lualine.components.diff.git_diff'.update_git_diff()
+              gzip  BufWritePost
+    *.gz      call gzip#write("gzip")
+    *.bz2     call gzip#write("bzip2")
+    *.Z       call gzip#write("compress -f")
+    *.lzma    call gzip#write("lzma -z")
+    *.xz      call gzip#write("xz -z")
+    *.lz      call gzip#write("lzip")
+    *.zst     call gzip#write("zstd --rm")
+    *.br      call gzip#write("brotli --rm")
+    *.lzo     call gzip#write("lzop -U")
+              lsp_c_1_b_1_save  BufWritePost
+    <buffer=1><Lua 591: /usr/share/nvim/runtime/lua/vim/lsp.lua:1680> [vim.lsp: textDocument/didSave handler]
+              Todo  BufWritePost
+    *         silent! lua require'trouble'.refresh({auto = true, provider = "todo"})
+              gitsigns  BufWritePost
+    *         <Lua 918: ~/.local/share/nvim/lazy/gitsigns.nvim/lua/gitsigns.lua:132>
+              lsp_c_1_b_1_save  BufWritePre
+    <buffer=1><Lua 590: /usr/share/nvim/runtime/lua/vim/lsp.lua:1653> [vim.lsp: textDocument/willSave]
+              CmdUndefined
+    CheckHealthcheckhealth
+              nvim_cmdwin  CmdWinEnter
+    [:>]      syntax sync minlines=1 maxlines=1
+              matchup_filetype  CmdWinEnter
+    *         call matchup#loader#bufwinenter()
+              ___cmp___  CmdlineChanged
+    *         <Lua 317: ~/.local/share/nvim/lazy/nvim-cmp/lua/cmp/utils/autocmd.lua:22> [nvim-cmp: autocmd: CmdlineChanged]
+              ___cmp___  CmdlineEnter
+    *         <Lua 313: ~/.local/share/nvim/lazy/nvim-cmp/lua/cmp/utils/autocmd.lua:22> [nvim-cmp: autocmd: CmdlineEnter]
+              noice.hacks  CmdlineEnter
+    *         <Lua 927: ~/.local/share/nvim/lazy/noice.nvim/lua/noice/util/hacks.lua:62>
+              ___cmp___  CmdlineLeave
+    *         <Lua 320: ~/.local/share/nvim/lazy/nvim-cmp/lua/cmp/utils/autocmd.lua:22> [nvim-cmp: autocmd: CmdlineLeave]
+              noice.hacks  CmdlineLeave
+    *         <Lua 926: ~/.local/share/nvim/lazy/noice.nvim/lua/noice/util/hacks.lua:72>
+              DAPUIRefreshHighlights  ColorScheme
+    *         lua require('dapui.config.highlights').setup()
+              ___cmp___  ColorScheme
+    *         <Lua 301: ~/.local/share/nvim/lazy/nvim-cmp/lua/cmp/utils/autocmd.lua:22> [nvim-cmp: autocmd: ColorScheme]
+              lualine  ColorScheme
+    *         lua require'lualine'.setup()
+              IndentBlanklineAutogroup  ColorScheme
+    *         lua require("indent_blankline.utils").reset_highlights()
+              gitsigns  ColorScheme
+    *         <Lua 848: ~/.local/share/nvim/lazy/gitsigns.nvim/lua/gitsigns/highlight.lua:321>
+              Todo  ColorScheme
+    *         lua vim.defer_fn(require("todo-comments.config").colors, 10)
+              NvimNotifyRefreshHighlights  ColorScheme
+    *         lua require('notify.config.highlights').setup()
+              BufferlineCmds  ColorScheme
+    *         <Lua 749: ~/.local/share/nvim/lazy/bufferline.nvim/lua/bufferline.lua:109>
+              ColorScheme
+    *         <Lua 782: ~/.local/share/nvim/lazy/noice.nvim/lua/noice/config/init.lua:260>
+
+              <Lua 693: ~/.local/share/nvim/lazy/noice.nvim/lua/noice/text/highlight.lua:19>
+              ColorSchemePre
+    *         <Lua 9: ~/.local/share/nvim/lazy/lazy.nvim/lua/lazy/core/loader.lua:30>
+              ___cmp___  CompleteChanged
+    *         <Lua 308: ~/.local/share/nvim/lazy/nvim-cmp/lua/cmp/utils/autocmd.lua:22> [nvim-cmp: autocmd: CompleteChanged]
+              IndentBlanklineAutogroup  CompleteChanged
+    *         IndentBlanklineRefresh
+              treesitter_context_update  CursorMoved
+    *         <Lua 107: ~/.local/share/nvim/lazy/nvim-treesitter-context/lua/treesitter-context.lua:21>
+              matchup_matchparen  CursorMoved
+    *         call s:matchparen.highlight_deferred()
+              lualine_stl_refresh  CursorMoved
+    *         call v:lua.require'lualine'.refresh({'kind': 'tabpage', 'place': ['statusline'], 'trigger': 'autocmd'})
+              CursorMoved
+    *         <Lua 74: ~/.local/share/nvim/lazy/noice.nvim/lua/noice/view/scrollbar.lua:43>
+
+              <Lua 530: ~/.local/share/nvim/lazy/noice.nvim/lua/noice/view/scrollbar.lua:43>
+
+              <Lua 985: ~/.local/share/nvim/lazy/noice.nvim/lua/noice/view/scrollbar.lua:43>
+
+              <Lua 988: ~/.local/share/nvim/lazy/noice.nvim/lua/noice/view/scrollbar.lua:43>
+
+              <Lua 1005: ~/.local/share/nvim/lazy/noice.nvim/lua/noice/view/scrollbar.lua:43>
+              matchup_matchparen  CursorMovedI
+    *         call s:matchparen.highlight_deferred()
+              ___cmp___  CursorMovedI
+    *         <Lua 318: ~/.local/share/nvim/lazy/nvim-cmp/lua/cmp/utils/autocmd.lua:22> [nvim-cmp: autocmd: CursorMovedI]
+              lualine_stl_refresh  CursorMovedI
+    *         call v:lua.require'lualine'.refresh({'kind': 'tabpage', 'place': ['statusline'], 'trigger': 'autocmd'})
+              Trouble  DiagnosticChanged
+    *         lua require'trouble'.refresh({auto = true, provider = "diagnostics"})
+              gitsigns  DirChanged
+    *         <Lua 923: ~/.local/share/nvim/lazy/gitsigns.nvim/lua/gitsigns.lua:145>
+              ExitPre
+    *         lua require('dap')._vim_exit_handler()
+              ShaDaCommands  FileAppendCmd
+    *.shada   :if !empty(v:cmdarg)|throw '++opt not supported'|endif |call writefile(shada#get_binstrings(getline(min([line("'["), line("']")]),max([line("'["), line("']")]))),expand('<afile>'),'ab')
+    *.shada.tmp.[a-z]:if !empty(v:cmdarg)|throw '++opt not supported'|endif |call writefile(shada#get_binstrings(getline(min([line("'["), line("']")]),max([line("'["), line("']")]))),expand('<afile>'),'ab')
+              gzip  FileAppendPost
+    *.gz      call gzip#write("gzip")
+    *.bz2     call gzip#write("bzip2")
+    *.Z       call gzip#write("compress -f")
+    *.lzma    call gzip#write("lzma -z")
+    *.xz      call gzip#write("xz -z")
+    *.lz      call gzip#write("lzip")
+    *.zst     call gzip#write("zstd --rm")
+    *.br      call gzip#write("brotli --rm")
+    *.lzo     call gzip#write("lzop -U")
+              gzip  FileAppendPre
+    *.gz      call gzip#appre("gzip -dn")
+    *.bz2     call gzip#appre("bzip2 -d")
+    *.Z       call gzip#appre("uncompress")
+    *.lzma    call gzip#appre("lzma -d")
+    *.xz      call gzip#appre("xz -d")
+    *.lz      call gzip#appre("lzip -d")
+    *.zst     call gzip#appre("zstd -d --rm")
+    *.br      call gzip#appre("brotli -d --rm")
+    *.lzo     call gzip#appre("lzop -d -U")
+              lualine_stl_refresh  FileChangedShellPost
+    *         call v:lua.require'lualine'.refresh({'kind': 'tabpage', 'place': ['statusline'], 'trigger': 'autocmd'})
+              IndentBlanklineAutogroup  FileChangedShellPost
+    *         IndentBlanklineRefresh
+              fugitive  FileReadCmd
+    fugitive://*exe fugitive#FileReadCmd()
+              Network  FileReadCmd
+    ftp://*   exe "sil doau FileReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(1,expand("<amatch>"))|exe "sil doau FileReadPost ".fnameescape(expand("<amatch>"))
+    rcp://*   exe "sil doau FileReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(1,expand("<amatch>"))|exe "sil doau FileReadPost ".fnameescape(expand("<amatch>"))
+    scp://*   exe "sil doau FileReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(1,expand("<amatch>"))|exe "sil doau FileReadPost ".fnameescape(expand("<amatch>"))
+    http://*  exe "sil doau FileReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(1,expand("<amatch>"))|exe "sil doau FileReadPost ".fnameescape(expand("<amatch>"))
+    file://*  exe "sil doau FileReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(1,expand("<amatch>"))|exe "sil doau FileReadPost ".fnameescape(expand("<amatch>"))
+    https://* exe "sil doau FileReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(1,expand("<amatch>"))|exe "sil doau FileReadPost ".fnameescape(expand("<amatch>"))
+    dav://*   exe "sil doau FileReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(1,expand("<amatch>"))|exe "sil doau FileReadPost ".fnameescape(expand("<amatch>"))
+    davs://*  exe "sil doau FileReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(1,expand("<amatch>"))|exe "sil doau FileReadPost ".fnameescape(expand("<amatch>"))
+    rsync://* exe "sil doau FileReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(1,expand("<amatch>"))|exe "sil doau FileReadPost ".fnameescape(expand("<amatch>"))
+    sftp://*  exe "sil doau FileReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(1,expand("<amatch>"))|exe "sil doau FileReadPost ".fnameescape(expand("<amatch>"))
+              ShaDaCommands  FileReadCmd
+    *.shada   :if !empty(v:cmdarg)|throw '++opt not supported'|endif |call append("'[", shada#get_strings(readfile(expand('<afile>'), 'b')))
+    *.shada.tmp.[a-z]:if !empty(v:cmdarg)|throw '++opt not supported'|endif |call append("'[", shada#get_strings(readfile(expand('<afile>'), 'b')))
+              tar  FileReadCmd
+    tarfile::*call tar#Read(expand("<amatch>"), 0)
+    tarfile::*/*call tar#Read(expand("<amatch>"), 0)
+              zip  FileReadCmd
+    zipfile:* call zip#Read(expand("<amatch>"), 0)
+    zipfile:*/*call zip#Read(expand("<amatch>"), 0)
+              gzip  FileReadPost
+    *.gz      call gzip#read("gzip -dn")
+    *.bz2     call gzip#read("bzip2 -d")
+    *.Z       call gzip#read("uncompress")
+    *.lzma    call gzip#read("lzma -d")
+    *.xz      call gzip#read("xz -d")
+    *.lz      call gzip#read("lzip -d")
+    *.zst     call gzip#read("zstd -d --rm")
+    *.br      call gzip#read("brotli -d --rm")
+    *.lzo     call gzip#read("lzop -d -U")
+              gzip  FileReadPre
+    *.gz      setlocal bin
+    *.bz2     setlocal bin
+    *.Z       setlocal bin
+    *.lzma    setlocal bin
+    *.xz      setlocal bin
+    *.lz      setlocal bin
+    *.zst     setlocal bin
+    *.br      setlocal bin
+    *.lzo     setlocal bin
+              filetypeplugin  FileType
+    *         call s:LoadFTPlugin()
+              filetypeindent  FileType
+    *         call s:LoadIndent()
+              NvimTreesitter  FileType
+    query     <Lua 120: ~/.local/share/nvim/lazy/nvim-treesitter/plugin/nvim-treesitter.lua:19> [Reload query]
+              matchup_filetype  FileType
+    *         call matchup#loader#init_buffer()
+              matchup_filetype_query  FileType
+    query     augroup MatchupTreesitter|augroup END|autocmd! MatchupTreesitter BufWritePost <buffer> call v:lua.require('treesitter-matchup.third-party.query').invalidate_query_file(expand('%:p'))
+              rhubarb  FileType
+    gitcommit call s:SetUpMessage(expand('<afile>:p'))
+              fugitive  FileType
+    netrw     if exists('b:git_dir') && b:git_dir =~# '^$\|' . s:bad_git_dir |   unlet b:git_dir | endif
+    git       call fugitive#MapCfile()
+    gitcommit call fugitive#MapCfile('fugitive#MessageCfile()')
+    git       if &foldtext ==# 'foldtext()' |    setlocal foldtext=fugitive#Foldtext() | endif
+    gitcommit if &foldtext ==# 'foldtext()' |    setlocal foldtext=fugitive#Foldtext() | endif
+    fugitive  call fugitive#MapCfile('fugitive#PorcelainCfile()')
+    gitrebase let &l:include = '^\%(pick\|squash\|edit\|reword\|fixup\|drop\|[pserfd]\)\>' | if &l:includeexpr !~# 'Fugitive' |   let &l:includeexpr = 'v:fname =~# ''^\x\{4,\}$'' && len(FugitiveGitDir()) ? FugitiveFind(v:fname) : ' .     (len(&l:includeexpr) ? &l:includeexpr : 'v:fname') | endif | let b:undo_ftplugin = get(b:, 'undo_ftplugin', 'exe') . '|setl inex= inc='
+              _luasnip_lazy_load  FileType
+    *         <Lua 278: ~/.local/share/nvim/lazy/LuaSnip/plugin/luasnip.lua:86>
+
+              <Lua 280: ~/.local/share/nvim/lazy/LuaSnip/plugin/luasnip.lua:94>
+
+              <Lua 282: ~/.local/share/nvim/lazy/LuaSnip/plugin/luasnip.lua:102>
+              lualine_stl_refresh  FileType
+    *         call v:lua.require'lualine'.refresh({'kind': 'tabpage', 'place': ['statusline'], 'trigger': 'autocmd'})
+              IndentBlanklineAutogroup  FileType
+    *         IndentBlanklineRefresh
+              sleuth  FileType
+    *         if exists('b:sleuth') | exe s:Init(0, 0, 0, 1) | endif
+              syntaxset  FileType
+    *         if !exists('b:ts_highlight') | 0verbose exe "set syntax=" . expand("<amatch>") | endif
+              lspconfig  FileType
+    nix       <Lua 434: ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs.lua:103> [Checks whether server rnix should start a new instance or attach to an existing one.]
+    json      <Lua 435: ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs.lua:103> [Checks whether server jsonls should start a new instance or attach to an existing one.]
+    jsonc     <Lua 436: ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs.lua:103> [Checks whether server jsonls should start a new instance or attach to an existing one.]
+    sh        <Lua 437: ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs.lua:103> [Checks whether server bashls should start a new instance or attach to an existing one.]
+    vue       <Lua 438: ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs.lua:103> [Checks whether server volar should start a new instance or attach to an existing one.]
+    lua       <Lua 439: ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs.lua:103> [Checks whether server lua_ls should start a new instance or attach to an existing one.]
+    rust      <Lua 440: ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs.lua:103> [Checks whether server rust_analyzer should start a new instance or attach to an existing one.]
+    python    <Lua 443: ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs.lua:103> [Checks whether server pylsp should start a new instance or attach to an existing one.]
+    javascript<Lua 444: ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs.lua:103> [Checks whether server tsserver should start a new instance or attach to an existing one.]
+    javascriptreact<Lua 445: ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs.lua:103> [Checks whether server tsserver should start a new instance or attach to an existing one.]
+    javascript.jsx<Lua 446: ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs.lua:103> [Checks whether server tsserver should start a new instance or attach to an existing one.]
+    typescript<Lua 447: ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs.lua:103> [Checks whether server tsserver should start a new instance or attach to an existing one.]
+    typescriptreact<Lua 448: ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs.lua:103> [Checks whether server tsserver should start a new instance or attach to an existing one.]
+    typescript.tsx<Lua 449: ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs.lua:103> [Checks whether server tsserver should start a new instance or attach to an existing one.]
+    html      <Lua 450: ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs.lua:103> [Checks whether server html should start a new instance or attach to an existing one.]
+    twig      <Lua 451: ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs.lua:103> [Checks whether server html should start a new instance or attach to an existing one.]
+    hbs       <Lua 452: ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs.lua:103> [Checks whether server html should start a new instance or attach to an existing one.]
+    go        <Lua 453: ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs.lua:103> [Checks whether server gopls should start a new instance or attach to an existing one.]
+    gomod     <Lua 454: ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs.lua:103> [Checks whether server gopls should start a new instance or attach to an existing one.]
+    gowork    <Lua 455: ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs.lua:103> [Checks whether server gopls should start a new instance or attach to an existing one.]
+    gotmpl    <Lua 456: ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs.lua:103> [Checks whether server gopls should start a new instance or attach to an existing one.]
+    yaml      <Lua 457: ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs.lua:103> [Checks whether server yamlls should start a new instance or attach to an existing one.]
+    yaml.docker-compose<Lua 458: ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs.lua:103> [Checks whether server yamlls should start a new instance or attach to an existing one.]
+              fugitive  FileWriteCmd
+    fugitive://*exe fugitive#FileWriteCmd()
+              Network  FileWriteCmd
+    ftp://*   exe "sil doau FileWritePre ".fnameescape(expand("<amatch>"))|exe "'[,']".'Nwrite '.fnameescape(expand("<amatch>"))|exe "sil doau FileWritePost ".fnameescape(expand("<amatch>"))
+    rcp://*   exe "sil doau FileWritePre ".fnameescape(expand("<amatch>"))|exe "'[,']".'Nwrite '.fnameescape(expand("<amatch>"))|exe "sil doau FileWritePost ".fnameescape(expand("<amatch>"))
+    scp://*   exe "sil doau FileWritePre ".fnameescape(expand("<amatch>"))|exe "'[,']".'Nwrite '.fnameescape(expand("<amatch>"))|exe "sil doau FileWritePost ".fnameescape(expand("<amatch>"))
+    http://*  exe "sil doau FileWritePre ".fnameescape(expand("<amatch>"))|exe "'[,']".'Nwrite '.fnameescape(expand("<amatch>"))|exe "sil doau FileWritePost ".fnameescape(expand("<amatch>"))
+    file://*  exe "sil doau FileWritePre ".fnameescape(expand("<amatch>"))|exe "'[,']".'Nwrite '.fnameescape(expand("<amatch>"))|exe "sil doau FileWritePost ".fnameescape(expand("<amatch>"))
+    dav://*   exe "sil doau FileWritePre ".fnameescape(expand("<amatch>"))|exe "'[,']".'Nwrite '.fnameescape(expand("<amatch>"))|exe "sil doau FileWritePost ".fnameescape(expand("<amatch>"))
+    davs://*  exe "sil doau FileWritePre ".fnameescape(expand("<amatch>"))|exe "'[,']".'Nwrite '.fnameescape(expand("<amatch>"))|exe "sil doau FileWritePost ".fnameescape(expand("<amatch>"))
+    rsync://* exe "sil doau FileWritePre ".fnameescape(expand("<amatch>"))|exe "'[,']".'Nwrite '.fnameescape(expand("<amatch>"))|exe "sil doau FileWritePost ".fnameescape(expand("<amatch>"))
+    sftp://*  exe "sil doau FileWritePre ".fnameescape(expand("<amatch>"))|exe "'[,']".'Nwrite '.fnameescape(expand("<amatch>"))|exe "sil doau FileWritePost ".fnameescape(expand("<amatch>"))
+              ShaDaCommands  FileWriteCmd
+    *.shada   :if !empty(v:cmdarg)|throw '++opt not supported'|endif |call writefile(shada#get_binstrings(getline(min([line("'["), line("']")]),max([line("'["), line("']")]))),expand('<afile>'),'b')
+    *.shada.tmp.[a-z]:if !empty(v:cmdarg)|throw '++opt not supported'|endif |call writefile(shada#get_binstrings(getline(min([line("'["), line("']")]),max([line("'["), line("']")]))),expand('<afile>'),'b')
+              tar  FileWriteCmd
+    tarfile::*call tar#Write(expand("<amatch>"))
+    tarfile::*/*call tar#Write(expand("<amatch>"))
+              zip  FileWriteCmd
+    zipfile:* call zip#Write(expand("<amatch>"))
+    zipfile:*/*call zip#Write(expand("<amatch>"))
+              gzip  FileWritePost
+    *.gz      call gzip#write("gzip")
+    *.bz2     call gzip#write("bzip2")
+    *.Z       call gzip#write("compress -f")
+    *.lzma    call gzip#write("lzma -z")
+    *.xz      call gzip#write("xz -z")
+    *.lz      call gzip#write("lzip")
+    *.zst     call gzip#write("zstd --rm")
+    *.br      call gzip#write("brotli --rm")
+    *.lzo     call gzip#write("lzop -U")
+              matchup_matchparen  InsertChange
+    *         call s:matchparen.highlight(1, 1)
+              better_escape  InsertCharPre
+    *         lua require"better_escape".check_charaters()
+              lazy_handler_event  InsertEnter
+    *         <Lua 56: ~/.local/share/nvim/lazy/lazy.nvim/lua/lazy/core/handler/event.lua:26>
+              matchup_matchparen  InsertEnter
+    *         call s:matchparen.highlight(1, 1)
+              ___cmp___  InsertEnter
+    *         <Lua 314: ~/.local/share/nvim/lazy/nvim-cmp/lua/cmp/utils/autocmd.lua:22> [nvim-cmp: autocmd: InsertEnter]
+              cmp_nvim_lsp  InsertEnter
+    *         <Lua 398: ~/.local/share/nvim/lazy/cmp-nvim-lsp/lua/cmp_nvim_lsp/init.lua:101>
+              InsertEnter
+    <buffer=1><Lua 960: ~/.local/share/nvim/lazy/noice.nvim/lua/noice/util/init.lua:80>
+              matchup_matchparen  InsertLeave
+    *         call s:matchparen.highlight(1)
+              ___cmp___  InsertLeave
+    *         <Lua 319: ~/.local/share/nvim/lazy/nvim-cmp/lua/cmp/utils/autocmd.lua:22> [nvim-cmp: autocmd: InsertLeave]
+              luasnip  InsertLeave
+    *         <Lua 275: ~/.local/share/nvim/lazy/LuaSnip/lua/luasnip/init.lua:450>
+              vim_lsp_semantic_tokens:1  InsertLeave
+    <buffer=1><Lua 956: /usr/share/nvim/runtime/lua/vim/lsp/semantic_tokens.lua:211>
+              noice_lsp_signature  LspAttach
+    *         <Lua 961: ~/.local/share/nvim/lazy/noice.nvim/lua/noice/lsp/signature.lua:56>
+              vim_lsp_semantic_tokens:1  LspDetach
+    <buffer=1><Lua 964: /usr/share/nvim/runtime/lua/vim/lsp/semantic_tokens.lua:219>
+              lualine_stl_refresh  ModeChanged
+    *         call v:lua.require'lualine'.refresh({'kind': 'tabpage', 'place': ['statusline'], 'trigger': 'autocmd'})
+              treesitter_context_update  OptionSet
+    *         <Lua 108: ~/.local/share/nvim/lazy/nvim-treesitter-context/lua/treesitter-context.lua:150>
+              matchup_matchparen  OptionSet
+    signcolumncall s:matchparen.highlight(1)
+              lualine  OptionSet
+    backgroundlua require'lualine'.setup()
+              IndentBlanklineAutogroup  OptionSet
+    list      IndentBlanklineRefresh
+    listchars IndentBlanklineRefresh
+    shiftwidthIndentBlanklineRefresh
+    tabstop   IndentBlanklineRefresh
+    expandtab IndentBlanklineRefresh
+              gitsigns  OptionSet
+    fileformat<Lua 845: ~/.local/share/nvim/lazy/gitsigns.nvim/lua/gitsigns/attach.lua:184>
+              gitsigns  QuickFixCmdPost
+    *vimgrep* <Lua 843: ~/.local/share/nvim/lazy/gitsigns.nvim/lua/gitsigns/attach.lua:202>
+              gitsigns  QuickFixCmdPre
+    *vimgrep* <Lua 846: ~/.local/share/nvim/lazy/gitsigns.nvim/lua/gitsigns/attach.lua:194>
+              nui_2_unmount  QuitPre
+    *         <Lua 1089: vim/_editor.lua:0>
+              lualine_stl_refresh  SessionLoadPost
+    *         call v:lua.require'lualine'.refresh({'kind': 'tabpage', 'place': ['statusline'], 'trigger': 'autocmd'})
+              SessionLoadPost
+    *         <Lua 769: ~/.local/share/nvim/lazy/bufferline.nvim/lua/bufferline/groups.lua:244>
+              BufferlineCmds  SessionLoadPost
+    *         <Lua 748: ~/.local/share/nvim/lazy/bufferline.nvim/lua/bufferline.lua:119>
+              fugitive  SourceCmd
+    fugitive://*exe fugitive#SourceCmd()
+              Network  SourceCmd
+    ftp://*   exe 'Nsource '.fnameescape(expand("<amatch>"))
+    rcp://*   exe 'Nsource '.fnameescape(expand("<amatch>"))
+    scp://*   exe 'Nsource '.fnameescape(expand("<amatch>"))
+    http://*  exe 'Nsource '.fnameescape(expand("<amatch>"))
+    file://*  exe 'Nsource '.fnameescape(expand("<amatch>"))
+    https://* exe 'Nsource '.fnameescape(expand("<amatch>"))
+    dav://*   exe 'Nsource '.fnameescape(expand("<amatch>"))
+    davs://*  exe 'Nsource '.fnameescape(expand("<amatch>"))
+    rsync://* exe 'Nsource '.fnameescape(expand("<amatch>"))
+    sftp://*  exe 'Nsource '.fnameescape(expand("<amatch>"))
+              ShaDaCommands  SourceCmd
+    *.shada   :execute 'rshada' fnameescape(expand('<afile>'))
+    *.shada.tmp.[a-z]:execute 'rshada' fnameescape(expand('<afile>'))
+              SpellFileMissing
+    *         call spellfile#LoadFile(expand('<amatch>'))
+              filetypedetect  StdinReadPost
+    *         <Lua 63: /usr/share/nvim/runtime/filetype.lua:10>
+
+              if !did_filetype() | runtime! scripts.vim | endif
+              noice-swap-exists  SwapExists
+    *         <Lua 912: ~/.local/share/nvim/lazy/noice.nvim/lua/noice/ui/init.lua:114>
+              Syntax
+    *         call s:SynSet()
+    c         if (exists('b:load_doxygen_syntax') && b:load_doxygen_syntax)^I|| (exists('g:load_doxygen_syntax') && g:load_doxygen_syntax)   | runtime! syntax/doxygen.vim | endif
+    cpp       if (exists('b:load_doxygen_syntax') && b:load_doxygen_syntax)^I|| (exists('g:load_doxygen_syntax') && g:load_doxygen_syntax)   | runtime! syntax/doxygen.vim | endif
+    cs        if (exists('b:load_doxygen_syntax') && b:load_doxygen_syntax)^I|| (exists('g:load_doxygen_syntax') && g:load_doxygen_syntax)   | runtime! syntax/doxygen.vim | endif
+    idl       if (exists('b:load_doxygen_syntax') && b:load_doxygen_syntax)^I|| (exists('g:load_doxygen_syntax') && g:load_doxygen_syntax)   | runtime! syntax/doxygen.vim | endif
+    java      if (exists('b:load_doxygen_syntax') && b:load_doxygen_syntax)^I|| (exists('g:load_doxygen_syntax') && g:load_doxygen_syntax)   | runtime! syntax/doxygen.vim | endif
+    php       if (exists('b:load_doxygen_syntax') && b:load_doxygen_syntax)^I|| (exists('g:load_doxygen_syntax') && g:load_doxygen_syntax)   | runtime! syntax/doxygen.vim | endif
+    datascriptif (exists('b:load_doxygen_syntax') && b:load_doxygen_syntax)^I|| (exists('g:load_doxygen_syntax') && g:load_doxygen_syntax)   | runtime! syntax/doxygen.vim | endif
+              BufferlineCmds  TabEnter
+    *         <Lua 746: ~/.local/share/nvim/lazy/bufferline.nvim/lua/bufferline.lua:127>
+              matchup_matchparen  TextChanged
+    *         call s:matchparen.highlight_deferred()
+              IndentBlanklineAutogroup  TextChanged
+    *         IndentBlanklineRefresh
+              matchup_matchparen  TextChangedI
+    *         call s:matchparen.highlight_deferred()
+              ___cmp___  TextChangedI
+    *         <Lua 315: ~/.local/share/nvim/lazy/nvim-cmp/lua/cmp/utils/autocmd.lua:22> [nvim-cmp: autocmd: TextChangedI]
+              IndentBlanklineAutogroup  TextChangedI
+    *         IndentBlanklineRefresh
+              TextChangedI
+    <buffer=1><Lua 958: ~/.local/share/nvim/lazy/noice.nvim/lua/noice/util/init.lua:80>
+              matchup_matchparen  TextChangedP
+    *         call s:matchparen.highlight_deferred()
+              ___cmp___  TextChangedP
+    *         <Lua 316: ~/.local/share/nvim/lazy/nvim-cmp/lua/cmp/utils/autocmd.lua:22> [nvim-cmp: autocmd: TextChangedP]
+              TextChangedP
+    <buffer=1><Lua 959: ~/.local/share/nvim/lazy/noice.nvim/lua/noice/util/init.lua:80>
+              YankHighlight  TextYankPost
+    *         <Lua 403: ~/.config/nvim/init.lua:157>
+              treesitter_context_update  User
+    SessionSavePre<Lua 111: ~/.local/share/nvim/lazy/nvim-treesitter-context/lua/treesitter-context.lua:38>
+    SessionSavePost<Lua 112: ~/.local/share/nvim/lazy/nvim-treesitter-context/lua/treesitter-context.lua:21>
+              fugitive  User
+    Flags     call Hoist('buffer', function('FugitiveStatusline'))
+    ProjectionistDetectcall s:ProjectionistDetect()
+              sleuth  User
+    Flags     call Hoist('buffer', 5, 'SleuthIndicator')
+              cmp_luasnip  User
+    LuasnipCleanup<Lua 400: ~/.local/share/nvim/lazy/cmp_luasnip/after/plugin/cmp_luasnip.lua:7>
+    LuasnipSnippetsAdded<Lua 401: ~/.local/share/nvim/lazy/cmp_luasnip/after/plugin/cmp_luasnip.lua:15>
+              User
+    BufferLineHoverOver<Lua 743: ~/.local/share/nvim/lazy/bufferline.nvim/lua/bufferline.lua:144>
+    BufferLineHoverOut<Lua 742: ~/.local/share/nvim/lazy/bufferline.nvim/lua/bufferline/ui.lua:68>
+    LuasnipInsertNodeEnter<Lua 957: ~/.local/share/nvim/lazy/noice.nvim/lua/noice/util/init.lua:80>
+              IndentBlanklineAutogroup  VimEnter
+    *         lua require("indent_blankline").init()
+              FileExplorer  VimEnter
+    *         sil call s:VimEnter(expand("<amatch>"))
+              VimLeavePre
+    *         <Lua 182: ~/.local/share/nvim/lazy/mason.nvim/lua/mason/init.lua:9>
+
+              <Lua 225: /usr/share/nvim/runtime/lua/vim/lsp.lua:1875> [vim.lsp: exit handler]
+
+              <Lua 304: ~/.local/share/nvim/lazy/nvim-cmp/lua/cmp/utils/async.lua:17>
+
+              <Lua 418: ~/.local/share/nvim/lazy/fidget.nvim/lua/fidget.lua:543>
+              gitsigns  VimLeavePre
+    *         <Lua 841: ~/.local/share/nvim/lazy/gitsigns.nvim/lua/gitsigns/attach.lua:369>
+              treesitter_context_update  VimResized
+    *         <Lua 104: ~/.local/share/nvim/lazy/nvim-treesitter-context/lua/treesitter-context.lua:21>
+              lualine_stl_refresh  VimResized
+    *         call v:lua.require'lualine'.refresh({'kind': 'tabpage', 'place': ['statusline'], 'trigger': 'autocmd'})
+              treesitter_context_update  WinEnter
+    *         <Lua 103: ~/.local/share/nvim/lazy/nvim-treesitter-context/lua/treesitter-context.lua:21>
+              matchup_matchparen  WinEnter
+    *         call s:matchparen.highlight(1)
+              lualine_stl_refresh  WinEnter
+    *         call v:lua.require'lualine'.refresh({'kind': 'tabpage', 'place': ['statusline'], 'trigger': 'autocmd'})
+              treesitter_context_update  WinLeave
+    *         <Lua 110: ~/.local/share/nvim/lazy/nvim-treesitter-context/lua/treesitter-context.lua:38>
+              matchup_matchparen  WinLeave
+    *         call s:matchparen.clear()
+              Todo  WinNew
+    *         lua require("todo-comments.highlight").attach()
+              treesitter_context_update  WinScrolled
+    *         <Lua 101: ~/.local/share/nvim/lazy/nvim-treesitter-context/lua/treesitter-context.lua:21>
+              IndentBlanklineAutogroup  WinScrolled
+    *         IndentBlanklineRefreshScroll
+              Todo  WinScrolled
+    *         lua require("todo-comments.highlight").highlight_win()
+              WinScrolled
+    *         <Lua 835: ~/.local/share/nvim/lazy/noice.nvim/lua/noice/view/scrollbar.lua:43>
+
+              <Lua 533: ~/.local/share/nvim/lazy/noice.nvim/lua/noice/view/scrollbar.lua:43>
+
+              <Lua 983: ~/.local/share/nvim/lazy/noice.nvim/lua/noice/view/scrollbar.lua:43>
+
+              <Lua 974: ~/.local/share/nvim/lazy/noice.nvim/lua/noice/view/scrollbar.lua:43>
+
+              <Lua 1003: ~/.local/share/nvim/lazy/noice.nvim/lua/noice/view/scrollbar.lua:43>

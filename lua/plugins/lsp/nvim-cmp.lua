@@ -14,6 +14,7 @@ return {
       'rafamadriz/friendly-snippets',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
+      -- 'hrsh7th/cmp-cmdline',
     },
 
 -- [[ Configure nvim-cmp ]]
@@ -63,6 +64,10 @@ return {
         sources = {
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
+          { name = "neorg" },
+
+
+          
         },
       }
 
