@@ -2,10 +2,22 @@ local dap = require 'dap'
 local dapui = require 'dapui'
 local tele = require('telescope.builtin')
 local bufferline = require('bufferline')
+local wk = require('which-key')
 
--- local telescope_project_keys = {
---
--- }
+local function telescope_project_keys()
+  require('telescope').extensions.project.project{ display_type = 'full' }
+  wk.show({
+    d = { "Delete Project" },
+    r = { "Rename Project" },
+    c = { "Add Project" },
+    C = { "Add Project CWD" },
+    f = { "Find Project" },
+    b = { "Browse Project Files" },
+    s = { "Search in Project Files" },
+    R = { "Recent Project Files" },
+    w = { "Change Working Directory" },
+  }, "Project" )
+end
 
 local mappings = {
     ['<leader>'] = {
@@ -153,7 +165,24 @@ local mappings = {
         a = { vim.lsp.buf.add_workspace_folder, "Add Folder to workspace" },
         r = { vim.lsp.buf.remove_workspace_folder, "Remove Folder to workspace" },
         l = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, 'Workspace List Folders'},
-        p = { function() require('telescope').extensions.project.project{ display_type = 'full' } end, "Project Interface" },
+        p = { vim.api.nvim_create_autocmd("BufEnter", {
+          pattern = "telescope-project",
+          callback = function()
+            require('telescope').extensions.project.project{ display_type = 'full' }
+            wk.show({
+              d = { "Delete Project" },
+              r = { "Rename Project" },
+              c = { "Add Project" },
+              C = { "Add Project CWD" },
+              f = { "Find Project" },
+              b = { "Browse Project Files" },
+              s = { "Search in Project Files" },
+              R = { "Recent Project Files" },
+              w = { "Change Working Directory" },
+            })
+          end
+        }), "Project" },
+        -- p = { function() require('telescope').extensions.project.project{ display_type = 'full' } end, "Project Interface" },
       },
       ["?"] = { function() tele.oldfiles() end, "Show Recent Files" },
       ["<space>"] = { function() tele.buffers() end, "Find Existing Buffers" },
@@ -185,5 +214,6 @@ local mappings = {
 -- }
 
 return {
-  default = mappings
+  default = mappings,
+  project = telescope_project_keys
 }

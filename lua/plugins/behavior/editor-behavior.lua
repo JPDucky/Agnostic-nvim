@@ -6,16 +6,17 @@ return {
     opts = {},
   },
   {
+    --  TODO: move to keymaps
     'echasnovski/mini.surround',
     opts = {
       mappings = {
-        add = 'gca',
-        delete = 'gcd',
-        find = 'gcf',
-        find_left = 'gcF',
-        highlight = 'gch',
-        replace = 'gcs',
-        update_n_lines = 'gcn',
+        add = 'ca',
+        delete = 'cd',
+        find = 'cf',
+        find_left = 'cF',
+        highlight = 'ch',
+        replace = 'cs',
+        update_n_lines = 'cn',
       },
       n_lines = 20,
     },

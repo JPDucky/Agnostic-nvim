@@ -1,3 +1,6 @@
+local langs = require('plugins.lsp.langs.utils')
+local lua = langs.lualang()
+
 return {
   -- LSP Configuration & Plugins
   {
@@ -9,11 +12,15 @@ return {
       { 'williamboman/mason.nvim', config = true },
       { 'williamboman/mason-lspconfig.nvim'},
       { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+      {
+        'creativenull/efmls-configs-nvim',
+        version = 'v1.1.1',
+        dependencies = { 'neovim/nvim-lspconfig' },
+      }
     },
 
 -- [[ Configure LSP ]]
     config = function()
-
       --  This function gets run when an LSP connects to a particular buffer.
       local on_attach = function(_, bufnr)
         local nmap = function(keys, func, desc)
@@ -23,6 +30,29 @@ return {
 
           vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
         end
+
+
+        -- local eslint = require('efmls-configs.linters.eslint')
+        -- local prettier = require('efmls-configs.formatters.prettier')
+        -- local stylua = require("efmls-configs.formatters.stylua")
+        --
+        -- local languages = {
+        --   typescript = { eslint, prettier },
+        --   lua = { stylua },
+        -- }
+        --
+        -- local efmls_config = {
+        --   filetypes = vim.tbl_keys(languages),
+        --   settings = {
+        --     rootMarkers = { '.git/' },
+        --     languages = languages,
+        --   },
+        --   init_options = {
+        --     documentFormatting = true,
+        --     documentRangeFormatting = true,
+        --   },
+        -- }
+
 
         --TODO: move these to keymaps file
         nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
@@ -61,6 +91,7 @@ return {
       --
       --  If you want to override the default filetypes that your language server will attach to you can
       --  define the property 'filetypes' to the map in question.
+
       local servers = {
         pylsp = {
           configurationSources = { "pycodestyle" }, -- "flake8"
@@ -173,7 +204,6 @@ return {
         },
         gopls = {},
         rust_analyzer = {},
-        tsserver = {},
         html = { filetypes = { 'html', 'twig', 'hbs'} },
         lua_ls = {
           Lua = {
@@ -186,10 +216,14 @@ return {
             telemetry = { enable = false },
           },
         },
+        luacheck = {},
+        luaformatter = {}, 
+        ---@stylua ignore
+        -- efm = efmls_config,
       }
 
       -- Setup neovim lua configuration
-      -- require('neodev').setup()
+      require('neodev').setup()
 
       -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
       local capabilities = vim.lsp.protocol.make_client_capabilities()

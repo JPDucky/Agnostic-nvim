@@ -97,6 +97,7 @@ require("lazy").setup({
   { import = "plugins.behavior" },
   { import = "plugins.interface" },
   { import = "plugins.lsp" },
+  -- { import = "plugins.lsp.langs" },
   { import = "plugins.themes" },
   { import = "plugins.debug" },
   --NOTE: Plugins in the /after directory will be loaded "after" the ones in the /plugin directory
