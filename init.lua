@@ -21,6 +21,19 @@ vim.opt.scrolloff = 14
 
 vim.opt.wrap = false
 
+-- vim.g.netrw_banner = 0
+-- vim.g.netrw_liststyle = 3
+-- vim.g.netrw_browse_split = 4
+-- vim.g.netrw_altv = 1
+-- vim.g.netrw_winsize = 25
+--
+-- vim.cmd [[
+--   augroup ProjectDrawer
+--     autocmd!
+--     autocmd VimEnter * :Vexplore
+--   augroup END
+-- ]]
+
 -- Plugins:
 
 -- NOTE: Here is where you install your plugins.
@@ -142,6 +155,13 @@ vim.o.completeopt = "menuone,noselect"
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+
+
+
+
+
+
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
@@ -151,6 +171,12 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 -- Remap for dealing with word wrap
 -- vim.keymap.set("n", "k", "v:count == 0 ? "gk" : "k"", { expr = true, silent = true })
 -- vim.keymap.set("n", "j", "v:count == 0 ? "gj" : "j"", { expr = true, silent = true })
+
+
+-- [[ Autocommands ]]
+
+local autocmds = require('after.plugins.functions.autocmds')
+vim.notify = require("notify")
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -163,8 +189,69 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
 })
 
--- Diagnostic keymaps
---vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
---vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
---vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
---vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+-- local help_portal = vim.api.nvim_create_augroup("HelpPortal", { clear = true })
+-- vim.api.nvim_create_autocmd("BufWinEnter", {
+--   callback = function()
+--     vim.g.splitbelow = true
+--   end,
+--   group = help_portal,
+--   pattern = "*help*",
+-- })
+--
+-- vim.api.nvim_create_autocmd("BufWinLeave", {
+--   callback = function()
+--     vim.g.splitbelow = false
+--   end,
+--   group = help_portal,
+--   pattern = "*help*",
+-- })
+--
+
+-- local whichkey_ft = vim.api.nvim_create_augroup("WhichKeyFT", { clear = true })
+-- vim.api.nvim_create_autocmd("FileType", {
+--   callback = function()
+--     vim.schedule(autocmds.WhichKeyFT)
+--   end,
+--   pattern = "*",
+--   group = whichkey_ft,
+-- })
+
+local function vimwiki_create()
+  local cwd = vim.loop.cwd()
+  local git_dir = vim.fn.finddir(".git", cwd)
+  if git_dir ~= "" then
+    local wiki_path = cwd.."/wiki.md"
+
+    if vim.fn.filereadable(wiki_path) == 0 then
+      local file = io.open(wiki_path, "w")
+      if file then
+        file:write("# Project TaskWiki\n")
+        file:close()
+        vim.notify("Project Wiki Created", "info")
+      else
+        vim.notify("Failed to create wiki", "info")
+      end
+    end
+  end
+end
+
+local wiki_create = vim.api.nvim_create_augroup("WikiCreate", { clear = true })
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    vimwiki_create()
+  end,
+  group = wiki_create,
+})
+
+local help_split_group = vim.api.nvim_create_augroup("HelpSplit", { clear = true })
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    local bt = vim.bo.buftype
+    if bt == 'help' then
+      vim.api.nvim_command('wincmd L')
+    end
+  end,
+  group = help_split_group,
+  pattern = "*",
+})

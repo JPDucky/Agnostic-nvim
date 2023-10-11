@@ -1,5 +1,5 @@
-local langs = require('plugins.lsp.langs.utils')
-local lua = langs.lualang()
+-- local langs = require('plugins.lsp.langs.lualang')
+-- local lualang = langs.lualang()
 
 return {
   -- LSP Configuration & Plugins
@@ -216,10 +216,10 @@ return {
             telemetry = { enable = false },
           },
         },
-        luacheck = {},
-        luaformatter = {}, 
-        ---@stylua ignore
+        -- luacheck = {},
+        -- luaformatter = {}, 
         -- efm = efmls_config,
+        -- lua = { lualang }
       }
 
       -- Setup neovim lua configuration

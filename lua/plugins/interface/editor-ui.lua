@@ -98,8 +98,7 @@ return {
           format_done = 'lsp_progress_done',
           throttle = 1000 / 30, -- frequency to update lsp progress message
           view = 'mini',
-        },
-        override = {
+        }, override = {
           -- override the default lsp markdown formatter with Noice
           ['vim.lsp.util.convert_input_to_markdown_lines'] = false,
           -- override the lsp markdown formatter with Noice
@@ -225,9 +224,6 @@ return {
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help indent_blankline.txt`
-    opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
-    },
+    version = '3.2.4'
   },
 }

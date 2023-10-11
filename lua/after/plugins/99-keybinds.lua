@@ -15,6 +15,7 @@ local functions_module = require('after.plugins.functions.functions')
 -- local project_keys = functions_module.project
 
 
+-- this feels most naturally
 vim.o.timeout = true
 vim.o.timeoutlen = 550
 
@@ -53,6 +54,7 @@ return {
     },
   },
 
+--  TODO: Move these::
 -- non-which-key keymaps:
 
   -- line bumpers
@@ -106,6 +108,12 @@ return {
 
   -- telescope undo
   -- vim.keymap.set('n', '<leader>uu', '<cmd>Telescope undo<cr>'),
+
+-- Diagnostic keymaps
+--vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
+--vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+--vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+--vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
   -- quick yoink
   vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { desc = 'Yoink to System Clipboard' }),
@@ -174,11 +182,11 @@ return {
   wk.register{
     ['<leader>'] = {
       a = {
-        name = '+Actions',
+        name = '+[A]ctions',
       },
 
       b = {
-        name = '+Buffer',
+        name = '+[B]uffer',
         d = "Delete Current Buff", --lazy, see file
         D = "Delete Current Buffer (Force)", -- lazy, see file
         g = { bufferline.pick, "Select Buffer" },
@@ -186,13 +194,13 @@ return {
       },
 
       c = {
-        name = '+Code',
+        name = '+[C]ode',
         a = { vim.lsp.buf.code_action, "Action" },
         t = { vim.lsp.buf.type_definition, "Type Definition" },
       },
 
       d = {
-        name = '+Debug',
+        name = '+[D]ebug',
         d = { dapui.toggle, 'DAP UI Toggle' },
         f = { dap.continue, 'Debug: Start/Continue' },
         i = { dap.step_into, 'Debug: Step Into' },
@@ -203,18 +211,28 @@ return {
       },
 
       e = {
-        name = "+Editor",
+        name = "+[E]ditor",
         c = { function() tele.colorscheme{} end, "Select colorscheme"}
       },
 
       f = {
-        name = '+File',
+        name = '+[F]ile',
         s = { '<Cmd>w<CR><Esc>', 'File Save' },
       },
 
-      --NOTE: Any of the telescope functions can have its theme changed to get_dropdown | get_cursor | get_ivy
       g = {
-        name = "+Git",
+        name = "+[G]rep",
+        f = { function() tele.find_files(require('telescope.themes').get_dropdown({})) end, 'Grep file' },
+        -- s = { function() tele.grep_string{} end, 'Grep String' }, -- TODO: add to visual mode
+        s = { function() tele.live_grep(require('telescope.themes').get_dropdown({})) end, 'Live Grep' },
+        p = { function() tele.planets(require('telescope.themes').get_dropdown({})) end, "Search the planets..." },
+        g = { function() tele.git_files(require('telescope.themes').get_dropdown({})) end, "Grep git" },
+        c = { function() tele.current_buffer_fuzzy_find(require('telescope.themes').get_cursor({})) end, "Current Buffer" },
+      },
+
+      --NOTE: Any of the telescope functions can have its theme changed to get_dropdown | get_cursor | get_ivy
+      G = {
+        name = "+[G]it",
         -- c = { function() tele.git_commits(require('telescope.themes').get_dropdown({})) end, "Commits"},
         o = { function() tele.git_bcommits(require('telescope.themes').get_dropdown({})) end, "Buffer's Commits" },
         b = { function() tele.git_branches(require('telescope.themes').get_dropdown({})) end, "Branches w/ Log Preview" },
@@ -222,15 +240,20 @@ return {
         h = { function() tele.git_stash(require('telescope.themes').get_dropdown({})) end, "Show Stash Items in Current Repo" },
         f = { function() tele.git_files(require('telescope.themes').get_dropdown({})) end, "Show files" },
       },
+      
+      h = {
+        name = "+[H]elp",
+        h = { function() tele.help_tags(require('telescope.themes').get_dropdown({})) end, "Search Help Files" },
+        c = { function() tele.commands(require('telescope.themes').get_dropdown({})) end, "List Available Plugin/User Commands" },
+      },
 
       l = {
-        name = "+Lists",
+        name = "+[L]ists",
         b = { function() tele.builtin(require('telescope.themes').get_ivy({})) end, "Built-Ins" },
         d = { function() tele.diagnostics(require('telescope.themes').get_cursor({})) end, "List Diagnostics for all open Buffers" }, --NOTE: this may belong somewhere else
-        h = { function() tele.help_tags(require('telescope.themes').get_dropdown({})) end, "List help tags" },
         j = { function() tele.jumplist(require('telescope.themes').get_cursor({})) end, "Jumplist" },
         l = {
-          name = "+LSP Stuff",
+          name = "+[L]SP Stuff",
           r = { function() tele.lsp_references(require('telescope.themes').get_cursor({})) end, "References" },
           i = { function() tele.lsp_incoming_calls(require('telescope.themes').get_cursor({})) end, "Incoming Calls for word Under Cursor" },
           o = { function() tele.lsp_outgoing_calls(require('telescope.themes').get_cursor({})) end, "Outgoing Calls for word Under Cursor" },
@@ -240,7 +263,7 @@ return {
         },
         m = { function() tele.marks(require('telescope.themes').get_dropdown({})) end, "List Marks" },
         p = {
-          name = "+Pickers",
+          name = "+[P]ickers",
           h = { function() tele.resume(require('telescope.themes').get_dropdown({})) end, "Results of Previous Picker" },
           N = { function() tele.pickers(require('telescope.themes').get_dropdown({})) end, "Previous Pickers" },
         },
@@ -252,11 +275,11 @@ return {
       },
 
       p = {
-        name = '+Personal',
+        name = '+[P]ersonal',
       },
 
       q = {
-        name = '+Quickfix',
+        name = '+[Q]uickfix',
         q = { function() tele.quickfix(require('telescope.themes').get_dropdown({})) end, "Quickfix" },
         h = { function() tele.quickfixhistory(require('telescope.themes').get_dropdown({})) end, "Quickfix History" },
         l = { function() tele.loclist(require('telescope.themes').get_dropdown({})) end, "Current Window Location List" },
@@ -266,18 +289,8 @@ return {
         n = { vim.lsp.buf.rename, "rename" },
       },
 
-      s = {
-        name = "+Search",
-        f = { function() tele.find_files(require('telescope.themes').get_dropdown({})) end, 'Grep file' },
-        -- s = { function() tele.grep_string{} end, 'Grep String' }, -- TODO: add to visual mode
-        s = { function() tele.live_grep(require('telescope.themes').get_dropdown({})) end, 'Live Grep' },
-        p = { function() tele.planets(require('telescope.themes').get_dropdown({})) end, "Search the planets..." },
-        g = { function() tele.git_files(require('telescope.themes').get_dropdown({})) end, "Grep git" },
-        c = { function() tele.current_buffer_fuzzy_find(require('telescope.themes').get_cursor({})) end, "Current Buffer" },
-      },
-
       t = {
-        name = '+Trouble/TODO',
+        name = '+[T]rouble/TODO',
         n = { function() require('todo-comments').jump_next() end, 'Next TODO' },
         N = { function() require('todo-comments').jump_prev() end, 'Previous TODO' },
         T = { '<Cmd>TodoTrouble<CR>', "TodoTrouble" },
@@ -291,7 +304,7 @@ return {
       },
 
       u = {
-        name = '+UI',
+        name = '+[U]I',
         n = { function() require('noice').cmd 'dismiss' end, 'Dismiss Notifications' },
         e = { function() require('noice').cmd 'errors' end, 'Show errors' },
         l = { function() require('noice').cmd 'last' end, 'Show last popup' },
@@ -302,18 +315,17 @@ return {
         u = { function() require('telescope').extensions.undo.undo() end, "undo tree" },
       },
       v = {
-        name = "+Vim Locals",
+        name = "+[V]im Locals",
         v = { function() tele.vim_options(require('telescope.themes').get_dropdown({})) end, "Vim Options" },
         r = { function() tele.registers(require('telescope.themes').get_ivy({})) end, "Registers" },
         a = { function() tele.autocommands(require('telescope.themes').get_ivy({})) end, "Autocommands" },
         k = { function() tele.keymaps(require('telescope.themes').get_ivy({})) end, "Keymaps" },
         f = { function() tele.filetypes(require('telescope.themes').get_dropdown({})) end, "Filetypes" },
         i = { function() tele.highlights(require('telescope.themes').get_dropdown({})) end, "Highlights" },
-        c = { function() tele.commands(require('telescope.themes').get_dropdown({})) end, "List Cmd's" },
       },
 
       w = {
-        name = "+Workspace",
+        name = "+[W]orkspace",
         a = { vim.lsp.buf.add_workspace_folder, "Add Folder to workspace" },
         r = { vim.lsp.buf.remove_workspace_folder, "Remove Folder to workspace" },
         l = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, 'Workspace List Folders'},
@@ -325,6 +337,7 @@ return {
       --end leader setup
     },
 
+    ['<A-i>'] = { "<Cmd>FloatermToggle<CR>", "Float-Term Toggle" },
     -- TODO: figure out what to do with these for window hopping easily
     -- ["<C-h>"] = { '<C-w>h' },
     -- ["<C-j>"] = { '<C-w>j' },

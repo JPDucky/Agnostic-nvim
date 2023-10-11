@@ -8,6 +8,7 @@ return {
   {
     --  TODO: move to keymaps
     'echasnovski/mini.surround',
+    -- NOTE: visual mode!!
     opts = {
       mappings = {
         add = 'ca',
@@ -24,4 +25,13 @@ return {
   -- commenter
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
+  -- TODO: https://github.com/Wansmer/treesj
+  -- {
+  --   'Wansmer/treesj',
+  --   keys = { '<space>m', '<space>j', '<space>s' },
+  --   dependencies = { 'nvim-treesitter/nvim-treesitter' },
+  --   config = function()
+  --     require('treesj').setup({})
+  --   end,
+  -- },
 }

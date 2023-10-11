@@ -1,0 +1,37 @@
+* Implement working 'trouble.nvim'
+** Trouble
+** Quickfix
+*** Quickfix List
+    - figure out what the hell this even - (?) 
+
+* UI Interface complexities/functions
+  - Have a <leader>xyz thing for 'help' 
+  	- How it should work:
+  		1. Press `<leader>h` or similar
+  		2. a `telescope` window pops up that lets you search the command (with autofill or suggestions)
+     		3. `<CR>` brings up the selected option
+  - #implement Marks (set, list, goto, etc. )
+
+* Neorg setup
+  - add ability to add thoughts from anywhere in project
+  - add project detection
+  - add todo-search/detection from within project 
+  - add ability to open `roadmap.norg` from anywhere within project
+  - #implement keybind for showing available tags and the like
+  - figure out how to #implement a small which-key window at the bottom - (?)
+
+* Coding setup (the typing out part)
+  - Fix the ability to list out commands and available subcommands
+  - #implement autocorrect for stuff like 'ture/true', etc.
+
+* LSP setup
+  - Add ability for `Mason` to autoinstall servers if a filetype is opened that both:
+    - has a supported filetype/server AND
+    - that server is not currently installed
+
+* General
+** Tabs/Buffers
+   - explain in readme that tabs != buffers and vise versa, and that all "tabs" reffered to will be referencing the bufferline tabs unless otherwise noted
+- #implement readme
+- #implement persistent, per-file/per-filetype settings
+

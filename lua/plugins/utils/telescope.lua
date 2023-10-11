@@ -4,7 +4,7 @@ return {
     'nvim-telescope/telescope.nvim',
     version = false,
     dependencies = {
-      'nvim-lua/plenary.nvim',
+      { 'nvim-lua/plenary.nvim' },
       {
         'nvim-telescope/telescope-fzf-native.nvim',
         build = 'make',
@@ -12,7 +12,7 @@ return {
           return vim.fn.executable 'make' == 1
         end,
       },
-      'debugloop/telescope-undo.nvim',
+      { 'debugloop/telescope-undo.nvim' },
       {
         'nvim-telescope/telescope-project.nvim',
         dependencies = {
