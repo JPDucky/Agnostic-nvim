@@ -35,3 +35,12 @@
 - #implement readme
 - #implement persistent, per-file/per-filetype settings
 
+* Figure out taskwarrior integration with vimwiki, make it with neorg
+
+# reading-list | to-do
+  - DOCS for trouble.nvim
+  - DOCS for NEORG, figure out keybinds
+  - DOCS for TaskWarrior
+  - Make taskwarrior and vimwiki read neorg files
+  - TRY nvim.lint
+  - TRY completion.nvim

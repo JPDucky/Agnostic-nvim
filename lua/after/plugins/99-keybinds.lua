@@ -218,15 +218,15 @@ return {
       f = {
         name = '+[F]ile',
         s = { '<Cmd>w<CR><Esc>', 'File Save' },
+        r = { function() tele.oldfiles() end, "Show Recent Files" },
+        f = { function() tele.find_files(require('telescope.themes').get_dropdown({})) end, 'Grep file' },
       },
 
       g = {
         name = "+[G]rep",
-        f = { function() tele.find_files(require('telescope.themes').get_dropdown({})) end, 'Grep file' },
         -- s = { function() tele.grep_string{} end, 'Grep String' }, -- TODO: add to visual mode
         s = { function() tele.live_grep(require('telescope.themes').get_dropdown({})) end, 'Live Grep' },
         p = { function() tele.planets(require('telescope.themes').get_dropdown({})) end, "Search the planets..." },
-        g = { function() tele.git_files(require('telescope.themes').get_dropdown({})) end, "Grep git" },
         c = { function() tele.current_buffer_fuzzy_find(require('telescope.themes').get_cursor({})) end, "Current Buffer" },
       },
 
@@ -238,7 +238,7 @@ return {
         b = { function() tele.git_branches(require('telescope.themes').get_dropdown({})) end, "Branches w/ Log Preview" },
         s = { function() tele.git_status(require('telescope.themes').get_dropdown({})) end, "Show Current Changes" },
         h = { function() tele.git_stash(require('telescope.themes').get_dropdown({})) end, "Show Stash Items in Current Repo" },
-        f = { function() tele.git_files(require('telescope.themes').get_dropdown({})) end, "Show files" },
+        f = { function() tele.git_files(require('telescope.themes').get_dropdown({})) end, "Grep git files" },
       },
       
       h = {
