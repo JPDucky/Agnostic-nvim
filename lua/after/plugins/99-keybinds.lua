@@ -15,7 +15,7 @@ local functions_module = require('after.plugins.functions.functions')
 -- local project_keys = functions_module.project
 
 
--- this feels most naturally
+-- this feels most natural
 vim.o.timeout = true
 vim.o.timeoutlen = 550
 
@@ -25,7 +25,7 @@ return {
     event = "BufEnter",
     init = function()
       vim.o.timeout = true
-      vim.o.timeoutlen = 0
+      vim.o.timeoutlen = 30
     end,
     opts = {
       window = {
@@ -272,6 +272,13 @@ return {
         tb = { function() tele.current_buffer_tags(require('telescope.themes').get_dropdown({})) end, "Current Buffer Tags" }, --TODO: find new home
         tt = { function() tele.treesitter(require('telescope.themes').get_dropdown({})) end, "Treesitter Functions & Variables" },
         z = { function() tele.symbols{} end, "Symbols" },
+        w = {
+          name = "+[W]orkspace",
+          a = { vim.lsp.buf.add_workspace_folder, "Add Folder to workspace" },
+          r = { vim.lsp.buf.remove_workspace_folder, "Remove Folder to workspace" },
+          l = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, 'Workspace List Folders'},
+          p = { function() require('telescope').extensions.project.project{ display_type = 'full' } end, "Project Interface" },
+        },
       },
 
       p = {
@@ -311,7 +318,9 @@ return {
         D = { function() require('noice').cmd 'disable' end, 'Disable Noice' },
         E = { function() require('noice').cmd 'enable' end, 'Enable Noice' },
         s = { function() require('noice').cmd 'stats' end, 'Show Noice Debug Stats' },
-        h = { function() require('noice').cmd 'telescope' end, 'Open message history in telescope' },
+        h = { function() require('telescope').extensions.noice.noice(require('telescope.themes').get_dropdown({})) end,
+
+         'Open message history in telescope' },
         u = { function() require('telescope').extensions.undo.undo() end, "undo tree" },
       },
       v = {
@@ -326,10 +335,6 @@ return {
 
       w = {
         name = "+[W]orkspace",
-        a = { vim.lsp.buf.add_workspace_folder, "Add Folder to workspace" },
-        r = { vim.lsp.buf.remove_workspace_folder, "Remove Folder to workspace" },
-        l = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, 'Workspace List Folders'},
-        p = { function() require('telescope').extensions.project.project{ display_type = 'full' } end, "Project Interface" },
       },
       ["?"] = { function() tele.oldfiles() end, "Show Recent Files" },
       ["<space>"] = { function() tele.buffers() end, "Find Existing Buffers" },

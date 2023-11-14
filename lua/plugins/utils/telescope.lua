@@ -5,6 +5,7 @@ return {
     version = false,
     dependencies = {
       { 'nvim-lua/plenary.nvim' },
+      { 'folke/noice.nvim' },
       {
         'nvim-telescope/telescope-fzf-native.nvim',
         build = 'make',
@@ -24,6 +25,7 @@ return {
       --TODO: fix telescope-undo
       extensions = {
         undo = {},
+        noice = {},
       },
       pickers = {
       },
@@ -36,7 +38,8 @@ return {
             layout_strategy = "vertical",
             layout_config = {
               preview_height = 0.85,
-            }
+            },
+          noice = {},
           },
           fzf = {},
           project = {},
@@ -52,6 +55,7 @@ return {
       pcall(require('telescope').load_extension('project'))
       pcall(require('telescope').load_extension('undo'))
       pcall(require('telescope').load_extension('project'))
+      pcall(require('telescope').load_extension('noice'))
 
       -- See `:help telescope.builtin`
       -- vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })

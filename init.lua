@@ -246,3 +246,25 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 --  group = help_split_group,
 --  pattern = '*',
 --})
+
+
+vim.api.nvim_create_autocmd("InsertLeavePre", {
+  callback = function()
+    local line = vim.api.nvim_get_current_line()
+    local pos = vim.api.nvim_win_get_cursor(0)
+
+    -- Store the cursor position if the line consists of only whitespace
+    if line:match("^%s*$") then
+      vim.g.saved_cursor_pos = pos
+    end
+  end
+})
+
+vim.api.nvim_create_autocmd("InsertLeave", {
+  callback = function()
+    if vim.g.saved_cursor_pos then
+      vim.api.nvim_win_set_cursor(0, vim.g.saved_cursor_pos)
+      vim.g.saved_cursor_pos = nil
+    end
+  end
+})

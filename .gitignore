@@ -3,3 +3,7 @@ test.sh
 .luarc.json
 nvim
 lazy-lock.json
+.repro
+*.txt
+*.wiki
+*.md
