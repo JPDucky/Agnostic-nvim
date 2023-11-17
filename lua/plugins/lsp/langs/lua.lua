@@ -8,6 +8,11 @@ return {
         checkThirdParty = true,
       },
       telemetry = { enable = false },
+      completion = {
+        callSnippet = "Replace",
+      }
     },
   },
+  luacheck = {},
+  luaformatter = {},
 }

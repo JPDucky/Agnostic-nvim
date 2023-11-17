@@ -1,0 +1,17 @@
+return {
+  angularls = {},
+  astro = {},
+  -- biome = {},
+  cssmodules_ls = {},
+  custom_elements_ls = {},
+  emmet_ls = {},
+  eslint = {},
+  graphql = {},
+  prismals = {},
+  svelte = {},
+  tailwindcss = {},
+  tsserver = {},
+  volar = {},
+  vtsls = {},
+  vuels = {},
+}

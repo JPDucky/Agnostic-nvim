@@ -17,7 +17,7 @@ return {
       'hrsh7th/cmp-cmdline',
     },
 
--- [[ Configure nvim-cmp ]]
+    -- [[ Configure nvim-cmp ]]
     config = function()
       -- See `:help cmp`
       local cmp = require 'cmp'
@@ -25,7 +25,10 @@ return {
       require('luasnip.loaders.from_vscode').lazy_load()
       luasnip.config.setup {}
 
+
       cmp.setup {
+        revision = 1,
+        enabled = true,
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
@@ -68,7 +71,6 @@ return {
           -- { name = 'cmp_tabnine' },
         },
       }
-
     end,
 
   },
