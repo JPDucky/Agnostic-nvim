@@ -1,29 +1,187 @@
 return {
   'nvimtools/none-ls.nvim',
-  requires = { 'nvim-lua/plenary.nvim' },
-  config = function()
-    local null_ls = require('null-ls')
+  dependencies = {
+    { 'nvim-lua/plenary.nvim' },
+    {
+      'jay-babu/mason-null-ls.nvim',
+      event = { "BufReadPre", "BufNewFile" },
+      dependencies = {
+        "williamboman/mason.nvim",
+        "nvimtools/none-ls.nvim"
+      },
+      config = function()
 
-    local code_actions = null_ls.builtins.code_actions
-    local diagnostics = null_ls.builtins.diagnostics
-    local formatting = null_ls.builtins.formatting
-    local hover = null_ls.builtins.hover
-    local completion = null_ls.builtins.completion
 
-    require('null-ls').setup({
-      sources = {
-        code_actions.gitsigns,
-        code_actions.eslint.with({
-          filetypes = {},
-        }),
-        -- code_actions.elsint_d,
-        -- code_actions.cspell,
-        -- diagnostics.cspell,
-        formatting.stylua,
-        diagnostics.eslint,
-        completion.spell,
-      }
-    })
-  end,
-  enabled = false,
+        local null_ls = require('null-ls')
+        local code_actions = null_ls.builtins.code_actions
+        local diagnostics = null_ls.builtins.diagnostics
+        local formatting = null_ls.builtins.formatting
+        local hover = null_ls.builtins.hover
+        local completion = null_ls.builtins.completion
+
+        require('null-ls').setup({
+          sources = {
+            code_actions.eslint,
+            code_actions.gitsigns,
+            code_actions.gomodifytags,
+            code_actions.impl,
+            code_actions.ltrs,
+            code_actions.proselint,
+            code_actions.refactoring,
+            code_actions.shellcheck,
+            code_actions.ts_node_action,
+
+            completion.spell,
+            completion.luasnip,
+
+            diagnostics.ansiblelint,
+            diagnostics.bandit,
+            diagnostics.buf,
+            diagnostics.cfn_lint,
+            diagnostics.checkmake,
+            diagnostics.checkstyle,
+            diagnostics.chktex,
+            diagnostics.cmake_lint,
+            diagnostics.codespell,
+            diagnostics.commitlint,
+            diagnostics.cppcheck,
+            diagnostics.cpplint,
+            diagnostics.curlylint,
+            diagnostics.deadnix,
+            diagnostics.deno_lint,
+            diagnostics.djlint,
+            diagnostics.dotenv_linter,
+            diagnostics.editorconfig_checker,
+            diagnostics.erb_lint,
+            diagnostics.eslint,
+            diagnostics.flake8,
+            diagnostics.golangci_lint,
+            diagnostics.gospel,
+            diagnostics.hadolint,
+            diagnostics.jshint,
+            diagnostics.jsonlint,
+            diagnostics.ltrs,
+            diagnostics.luacheck,
+            diagnostics.markdownlint,
+            diagnostics.markuplint,
+            diagnostics.mdl,
+            diagnostics.misspell,
+            diagnostics.mypy,
+            diagnostics.npm_groovy_lint,
+            diagnostics.php,
+            diagnostics.proselint,
+            diagnostics.protolint,
+            diagnostics.puppet_lint,
+            diagnostics.pycodestyle,
+            diagnostics.pydocstyle,
+            diagnostics.pylama,
+            diagnostics.pylint,
+            diagnostics.ruff,
+            diagnostics.selene,
+            diagnostics.semgrep,
+            diagnostics.semistandardjs,
+            diagnostics.shellcheck,
+            diagnostics.spectral,
+            diagnostics.sqlfluff,
+            diagnostics.standardjs,
+            diagnostics.statix,
+            diagnostics.stylelint,
+            diagnostics.stylint,
+            diagnostics.textlint,
+            diagnostics.tidy,
+            diagnostics.todo_comments,
+            diagnostics.trail_space,
+            diagnostics.tsc,
+            diagnostics.typos,
+            diagnostics.vale,
+            diagnostics.vint,
+            diagnostics.vulture,
+            diagnostics.write_good,
+            diagnostics.xo,
+            diagnostics.yamllint,
+            diagnostics.zsh,
+
+            formatting.alejandra,
+            formatting.astyle,
+            formatting.autoflake,
+            formatting.autopep8,
+            formatting.beautysh,
+            formatting.biome,
+            formatting.black,
+            formatting.blade_formatter,
+            formatting.blue,
+            formatting.buf,
+            formatting.cbfmt,
+            formatting.deno_fmt,
+            formatting.djhtml,
+            formatting.djlint,
+            formatting.docformatter,
+            formatting.eslint,
+            formatting.fixjson,
+            formatting.gofmt,
+            formatting.goimports,
+            formatting.golines,
+            formatting.htmlbeautifier,
+            formatting.isort,
+            formatting.json_tool,
+            formatting.lua_format,
+            formatting.markdownlint,
+            formatting.markdown_toc,
+            formatting.mdformat,
+            formatting.nginx_beautifier,
+            formatting.nixfmt,
+            formatting.nixpkgs_fmt,
+            formatting.pint,
+            formatting.prettier,
+            formatting.prismaFmt,
+            formatting.puppet_lint,
+            formatting.pyflyby,
+            formatting.pyink,
+            formatting.remark,
+            formatting.ruff,
+            formatting.ruff_format,
+            formatting.rustfmt,
+            formatting.rustywind,
+            formatting.semistandardjs,
+            formatting.shellharden,
+            formatting.shfmt,
+            formatting.sqlfluff,
+            formatting.sqlfmt,
+            formatting.sql_formatter,
+            formatting.standardjs,
+            formatting.standardts,
+            formatting.stylelint,
+            formatting.stylua,
+            formatting.taplo,
+            formatting.templ,
+            formatting.terrafmt,
+            formatting.terraform_fmt,
+            formatting.textlint,
+            formatting.trim_newlines,
+            formatting.trim_whitespace,
+            formatting.uncrustify,
+            formatting.xmlformat,
+            formatting.xmllint,
+            formatting.yamlfix,
+            formatting.yamlfmt,
+            formatting.yapf,
+
+            hover.dictionary,
+            hover.printenv,
+          }
+        })
+
+        local root_dir = function(fname)
+          return fname:match("my-project") and "my-project-root"
+        end
+
+        require('mason-null-ls').setup({
+          ensure_installed = nil,
+          automatic_installation = true,
+          automatic_setup = true,
+          handlers = {},
+        })
+      end,
+    },
+  },
 }

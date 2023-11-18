@@ -1,15 +1,31 @@
--- local langs = require('plugins.lsp.langs.lualang')
--- local lualang = langs.lualang()
-
 return {
-  -- LSP Configuration & Plugins
+  {
+      {
+        'williamboman/mason.nvim',
+        config = function()
+          require("mason").setup()
+        end,
+      },
+
+      {
+        'williamboman/mason-lspconfig.nvim',
+        config = function()
+          require('mason-lspconfig').setup()
+        end,
+      },
+      {
+        "folke/neodev.nvim",
+        opts = {},
+      },
+  },
+
   {
     'neovim/nvim-lspconfig',
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       { "folke/neoconf.nvim",               cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
       { "folke/neodev.nvim" },
-      { 'williamboman/mason.nvim',          config = true },
+      { 'williamboman/mason.nvim' },
       { 'williamboman/mason-lspconfig.nvim' },
       { 'j-hui/fidget.nvim',                tag = 'legacy',  opts = {} },
       {
@@ -82,40 +98,68 @@ return {
           vim.lsp.buf.format()
         end, { desc = 'Format current buffer with LSP' })
       end
+      -- end on_attach autocmd
 
       local servers = {}
       local langs = {}
 
       -- Setup neovim lua configuration
       require('neodev').setup({})
+      local lspconfig = require('lspconfig')
+      lspconfig.lua_ls.setup({
+        settings = {
+          Lua = {
+            completion = {
+              callSnippet = "Replace"
+            }
+          }
+        }
+      })
 
-      local files = vim.loop.fs_scandir('./langs')
-      if files ~= nil then
-        for _, file in ipairs(files) do
+      local config_dir = vim.fn.stdpath('config')
+
+      local plugins_dir = vim.fs.joinpath(config_dir, 'lua', 'plugins')
+
+      local langs_dir = vim.fs.joinpath(plugins_dir, 'lsp', 'langs')
+
+      local dir_handle = vim.loop.fs_scandir(langs_dir)
+
+      -- ensure that the files within ./langs are named with the filetype
+      if dir_handle then
+        while true do
+          local file, type = vim.loop.fs_scandir_next(dir_handle)
+          if not file then break end
+          local file = vim.fn.fnamemodify(file, ':t')
           if file:match('%.lua$') then
             local name = file:gsub('%.lua$', '')
-            require('langs.' .. name)
-            table.insert(langs, name)
+            local module_path = 'plugins.lsp.langs.' .. name
+            local config = require(module_path)
+            langs[name] = config
           end
         end
       end
 
       -- loop through imported configs to put them in server table
-      for server, _, config in pairs(langs) do
-        servers[server] = config
+      for _, config in pairs(langs) do
+        for server, server_config in pairs(config) do
+          servers[server] = config
+        end
       end
-
 
       -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
       -- Ensure the servers above are installed
-      local mason_lspconfig = require 'mason-lspconfig'
+      local mason_lspconfig = require('mason-lspconfig')
 
-      mason_lspconfig.setup {
+      mason_lspconfig.setup({
+        ensure_installed = {}
+      })
+
+      mason_lspconfig.setup({
         ensure_installed = vim.tbl_keys(servers),
-      }
+      })
 
       mason_lspconfig.setup_handlers {
         function(server_name)
@@ -134,48 +178,24 @@ return {
         ensure_installed = vim.tbl_keys(langs)
       }
 
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        pattern = "*",
-        callback = function(args)
-          require("conform").format({ bufnr = args.buf })
-        end,
+      vim.diagnostic.config({
+        virtual_text = true,
+        signs = { active = signs },
+        update_in_insert = false,
+        underline = true,
+        severity_sort = true,
+        float = {
+          focusable = false,
+          style = "minimal",
+          border = "rounded",
+          source = "always",
+          header = "",
+          prefix = "",
+        }
       })
 
-      -- require('conform').setup({
-      --   format_on_save = {
-      --     timeout_ms = 500,
-      --     lsp_fallback = true,
-      --   },
-      --   formatters = {
-      --     yamlfix = {}
-      --   }
-      -- })
+      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+      vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
     end
-  },
-  -- Haven't gotten around to automatic install of linters so you'll have to
-  -- fill them in yourself for now:
-  {
-    "mfussenegger/nvim-lint",
-    config = function()
-      require('lint').linters_by_ft = {
-        lua = { 'selene', 'luacheck' },
-        python = { 'flake8' },
-        ansible = { 'ansible_lint' },
-        javascript = { 'biomejs', 'eslint' },
-        cpp = { "cpplint" },
-        [".env"] = { 'dotenv_linter' },
-        html = { 'tidy' },
-        json = { 'jsonlint' },
-        nix = { 'nix' },
-        php = { 'php' },
-
-      }
-
-      vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-        callback = function()
-          require("lint").try_lint()
-        end,
-      })
-    end,
   },
 }

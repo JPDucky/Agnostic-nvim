@@ -29,10 +29,10 @@ return {
     end,
     opts = {
       window = {
-        border = "single", -- none | single | double | shadow
+        border = "single",   -- none | single | double | shadow
         position = "bottom", -- bottom | top
         margin = { 1, 0, 1, 0 },
-        padding = { 1, 2, 1 ,2 },
+        padding = { 1, 2, 1, 2 },
         windblend = 0,
         zindex = 1000,
       },
@@ -47,15 +47,15 @@ return {
   {
     "max397574/better-escape.nvim",
     opts = {
-      mapping = {"jk", "jj", "kk"}, --mappings for escaping insert mode
+      mapping = { "jk", "jj", "kk" }, --mappings for escaping insert mode
       timeout = 400,
       clear_empty_lines = true,
       keys = '<Esc>',
     },
   },
 
---  TODO: Move these::
--- non-which-key keymaps:
+  --  TODO: Move these::
+  -- non-which-key keymaps:
 
   -- line bumpers
   -- vim.keymap.set('n', '<A-h>', '<C-w>h', { desc = 'Jump to window Left' }),
@@ -109,11 +109,11 @@ return {
   -- telescope undo
   -- vim.keymap.set('n', '<leader>uu', '<cmd>Telescope undo<cr>'),
 
--- Diagnostic keymaps
---vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
---vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
---vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
---vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+  -- Diagnostic keymaps
+  --vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
+  --vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+  --vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+  --vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
   -- quick yoink
   vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { desc = 'Yoink to System Clipboard' }),
@@ -158,7 +158,7 @@ return {
   vim.keymap.set('i', '<M-o>', '<C-o>o', { noremap = true, silent = true }),
   vim.keymap.set('i', '<M-O>', '<C-o>O', { noremap = true, silent = true }),
 
---NOTE: setup functions here, define them below
+  --NOTE: setup functions here, define them below
 
   -- neorg_callbacks.on_event("core.keybinds.events.enable_keybinds", function(_, keybinds)
   --   keybinds.map_event_to_mode("norg", {
@@ -176,10 +176,10 @@ return {
   -- end)
 
 
--- NOTE: which-key bindings
--- All of these bindings are prefaced with the leader key, more to come
+  -- NOTE: which-key bindings
+  -- All of these bindings are prefaced with the leader key, more to come
 
-  wk.register{
+  wk.register {
     ['<leader>'] = {
       a = {
         name = '+[A]ctions',
@@ -187,7 +187,7 @@ return {
 
       b = {
         name = '+[B]uffer',
-        d = "Delete Current Buff", --lazy, see file
+        d = "Delete Current Buff",           --lazy, see file
         D = "Delete Current Buffer (Force)", -- lazy, see file
         g = { bufferline.pick, "Select Buffer" },
         c = { bufferline.close_with_pick, "Close Select Buffer" },
@@ -212,22 +212,23 @@ return {
 
       e = {
         name = "+[E]ditor",
-        c = { function() tele.colorscheme{} end, "Select colorscheme"}
+        c = { function() tele.colorscheme {} end, "Select colorscheme" }
       },
 
       f = {
         name = '+[F]ile',
         s = { '<Cmd>w<CR><Esc>', 'File Save' },
         r = { function() tele.oldfiles() end, "Show Recent Files" },
-        f = { function() tele.find_files(require('telescope.themes').get_dropdown({})) end, 'Grep file' },
+        f = { function() vim.lsp.buf.format({ async = true }) end, "Format File" },
       },
 
       g = {
         name = "+[G]rep",
         -- s = { function() tele.grep_string{} end, 'Grep String' }, -- TODO: add to visual mode
-        s = { function() tele.live_grep(require('telescope.themes').get_dropdown({})) end, 'Live Grep' },
-        p = { function() tele.planets(require('telescope.themes').get_dropdown({})) end, "Search the planets..." },
         c = { function() tele.current_buffer_fuzzy_find(require('telescope.themes').get_cursor({})) end, "Current Buffer" },
+        f = { function() tele.find_files(require('telescope.themes').get_dropdown({})) end, 'Grep file' },
+        p = { function() tele.planets(require('telescope.themes').get_dropdown({})) end, "Search the planets..." },
+        s = { function() tele.live_grep(require('telescope.themes').get_dropdown({})) end, 'Live Grep' },
       },
 
       --NOTE: Any of the telescope functions can have its theme changed to get_dropdown | get_cursor | get_ivy
@@ -240,7 +241,7 @@ return {
         h = { function() tele.git_stash(require('telescope.themes').get_dropdown({})) end, "Show Stash Items in Current Repo" },
         f = { function() tele.git_files(require('telescope.themes').get_dropdown({})) end, "Grep git files" },
       },
-      
+
       h = {
         name = "+[H]elp",
         h = { function() tele.help_tags(require('telescope.themes').get_dropdown({})) end, "Search Help Files" },
@@ -268,16 +269,16 @@ return {
           N = { function() tele.pickers(require('telescope.themes').get_dropdown({})) end, "Previous Pickers" },
         },
 
-        s = { function() tele.spell_suggest(require('telescope.themes').get_cursor({})) end, "Spelling Suggestions" },-- r = { function() tele.reloader(require('telescope.themes').get_dropdown({})) end, "Lua Modules (reloader)" },  -- TODO: Figure out what is hijacking keybinds here
+        s = { function() tele.spell_suggest(require('telescope.themes').get_cursor({})) end, "Spelling Suggestions" },         -- r = { function() tele.reloader(require('telescope.themes').get_dropdown({})) end, "Lua Modules (reloader)" },  -- TODO: Figure out what is hijacking keybinds here
         tb = { function() tele.current_buffer_tags(require('telescope.themes').get_dropdown({})) end, "Current Buffer Tags" }, --TODO: find new home
         tt = { function() tele.treesitter(require('telescope.themes').get_dropdown({})) end, "Treesitter Functions & Variables" },
-        z = { function() tele.symbols{} end, "Symbols" },
+        z = { function() tele.symbols {} end, "Symbols" },
         w = {
           name = "+[W]orkspace",
           a = { vim.lsp.buf.add_workspace_folder, "Add Folder to workspace" },
           r = { vim.lsp.buf.remove_workspace_folder, "Remove Folder to workspace" },
-          l = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, 'Workspace List Folders'},
-          p = { function() require('telescope').extensions.project.project{ display_type = 'full' } end, "Project Interface" },
+          l = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, 'Workspace List Folders' },
+          p = { function() require('telescope').extensions.project.project { display_type = 'full' } end, "Project Interface" },
         },
       },
 
@@ -302,7 +303,7 @@ return {
         N = { function() require('todo-comments').jump_prev() end, 'Previous TODO' },
         T = { '<Cmd>TodoTrouble<CR>', "TodoTrouble" },
         L = { '<Cmd>TodoTelescope<CR>', "TodoTelescope" },
-        t = { function() require("trouble").open() end, "Open Trouble"},
+        t = { function() require("trouble").open() end, "Open Trouble" },
         w = { function() require('trouble').open 'workspace_diagnostics' end, 'Workspace Diagnostics' },
         d = { function() require('trouble').open 'document_diagnostics' end, 'Document Diagnostics' },
         q = { function() require('trouble').open 'quickfix' end, 'Quickfix' },
@@ -320,7 +321,7 @@ return {
         s = { function() require('noice').cmd 'stats' end, 'Show Noice Debug Stats' },
         h = { function() require('telescope').extensions.noice.noice(require('telescope.themes').get_dropdown({})) end,
 
-         'Open message history in telescope' },
+          'Open message history in telescope' },
         u = { function() require('telescope').extensions.undo.undo() end, "undo tree" },
       },
       v = {
@@ -350,23 +351,23 @@ return {
     -- ["<C-l>"] = { '<C-w>l' },
 
     --  NOTE: here are the leader-less keybinds
-   [""] = {
-    g = {
-      t = {
-        name = "goto telescope",
-        i = { function() tele.lsp_implementations{} end, "Go-To Implementation" },
-        d = { function() tele.lsp_definitions{} end, "Go-To Definition" },
-        t = { function() tele.lsp_type_definitions{} end, "Go-To Type Definition" },
+    [""] = {
+      g = {
+        t = {
+          name = "goto telescope",
+          i = { function() tele.lsp_implementations {} end, "Go-To Implementation" },
+          d = { function() tele.lsp_definitions {} end, "Go-To Definition" },
+          t = { function() tele.lsp_type_definitions {} end, "Go-To Type Definition" },
+        },
+        d = { vim.lsp.buf.definition, "Goto Definition" },
+        D = { vim.lsp.buf.declaration, "Goto declaration" },
+        r = { function() tele.lsp_references() end, "Goto References" },
+        I = { function() tele.lsp_implementations() end, "Goto References" },
+        --TODO: handle 'g' maps to avoid clutter
       },
-      d = { vim.lsp.buf.definition, "Goto Definition" },
-      D = { vim.lsp.buf.declaration, "Goto declaration" },
-      r = { function() tele.lsp_references() end, "Goto References" },
-      I = { function() tele.lsp_implementations() end, "Goto References" },
-      --TODO: handle 'g' maps to avoid clutter
-    },
-    f = { function() require('flash').treesitter() end, "Flash Treesitter" },
-    ["<C-h>"] = { vim.lsp.buf.signature_help, "Signature Documentation" },
-    ["<M-H>"] = { vim.lsp.buf.hover, "Hover Documentation" },
-   }
+      f = { function() require('flash').treesitter() end, "Flash Treesitter" },
+      ["<C-h>"] = { vim.lsp.buf.signature_help, "Signature Documentation" },
+      ["<M-H>"] = { vim.lsp.buf.hover, "Hover Documentation" },
+    }
   }
 }

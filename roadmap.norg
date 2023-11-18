@@ -10,19 +10,20 @@
   		1. Press `<leader>h` or similar
   		2. a `telescope` window pops up that lets you search the command (with autofill or suggestions)
      		3. `<CR>` brings up the selected option
-  - #implement Marks (set, list, goto, etc. )
+  - TODO: Marks (set, list, goto, etc. )
+  - auto deletion of trailing spaces and empty lines (just spaces)
 
 * Neorg setup
   - add ability to add thoughts from anywhere in project
   - add project detection
   - add todo-search/detection from within project 
   - add ability to open `roadmap.norg` from anywhere within project
-  - #implement keybind for showing available tags and the like
-  - figure out how to #implement a small which-key window at the bottom - (?)
+  - TODO: keybind for showing available tags and the like
+  - figure out how to TODO: a small which-key window at the bottom - (?)
 
 * Coding setup (the typing out part)
   - Fix the ability to list out commands and available subcommands
-  - #implement autocorrect for stuff like 'ture/true', etc.
+  - TODO: autocorrect for stuff like 'ture/true', etc.
 
 * LSP setup
   - Add ability for `Mason` to autoinstall servers if a filetype is opened that both:
@@ -32,8 +33,9 @@
 * General
 ** Tabs/Buffers
    - explain in readme that tabs != buffers and vise versa, and that all "tabs" reffered to will be referencing the bufferline tabs unless otherwise noted
-- #implement readme
-- #implement persistent, per-file/per-filetype settings
+   - make readme
+   - potential: persistent, per-file/per-filetype settings
+   - swap telescope.undo with undotree
 
 * Figure out taskwarrior integration with vimwiki, make it with neorg
 
@@ -46,358 +48,362 @@
   - TRY completion.nvim
 
 
-* Plugins to try
-  ## Project Management
-   - pluffie/neoproj
-   - ahkmedkhalf/project.nvim
-   - cljoly/telescope-repo.nvim
-   - natecraddock/workspaces.nvim
-   - gnikdroy/projections.nvim
-   - nyngwang/suave.lua
-## Session Management
-*** I dont want automatic session management, manual only
-  - gennaro-tedesco/nvim-possession
-  - olimorris/persisted.nvim
-  - shatur/neovim-session-manager
-  - jedrzejboczar/possession.nvim
-  - rutatang/spectacle.nvim
-  - coffebar/neovim-project
-** Task Management/Note Taking/Journaling
-   - neorg
-   - vimwiki
-   - taskwiki
-** Plugin Management
-   - roobert/activate.nvim
-   - abeldekat/lazyflex.nvim
-** LSP
-*** Clients/Tools
-    - kosayada/nvim-lightbulb
-    - roobert/action-hints.nvim
-    - ojroques/nvim-lspfuzzy
-    - gfanto/fzf-lsp.nvim
-    - ray-x/lsp_signature.nvim
-    - rishabhRD/nvim-lsputils
-    - nvimdev/lspsaga.nvim
-    - smjonas/inc-rename.nvim
-    - rmagatti/goto-preview
-    - jubnzv/virtual-types.nvim
-    - ray-x/navigator.lua
-    - simrat39/symbols-outline.nvim
-    - stevearc/aerial.nvim
-    - smitesh/nvim-navbuddy
-    - nanotee/nvim-lsp-basics
-    - weilbith/nvim-code-action-menu
-    - aznhe21/actions-preview.nvim
-    - mfussenegger/nvim-lint
-    - junnplus/nvim-lsp-setup
-    - amrbshir/nvim-docs-view
-    - roobert/hoversplit.nvim
-    - kasama/nvim-custom-diagnostic-highlight
-    - dnlhc/glance.nvim
-    - chrisgrieser/nvim-dr-lsp
-    - creativenull/efmls-configs-nvim
-    - creativenull/diagnosticls-configs-nvim
-    - hinell/lsp-timeout.nvim
-    - soulis-1256/hoverhints.nvim
-*** Installer
-    - williamboman/mason.nvim
-*** Diagnostics
-    - andrewferrier/textobj-diagnostic
-    - ~whynothugo/lsp_lines.nvim
-    - onsails/diaglist.nvim
-    - folke/trouble.nvim
-    - piersolenski/wtf.nvim
-    - folke/lsp-colors.nvim
-    - chrisgrieser/nvim-rulebook
-** Completion
-   - ms-jpq/coq_nvim
-   - hrsh7th/nvim-cmp
-   - echasnovski/mini.nvim#mini.completion
-   - vigoux/complementree.nvim
-   - zbirenbaum/copilot.lua
-** AI
-   - robitx/gp.nvim
-   - dense-analysis/neural
-   - gsuuon/llm.nvim
-   - jackmort/chatgpt.nvim
-   - dpayne/codegpt.nvim
-** Language Support
-   - acksid/swenv.nvim
-   - roobert/f-string-toggle.nvim
-   - gennaro-tedesco/nvim-jqx
-*** YAML
-    - someone-stole-my-name/yaml-companion.nvim
-    - cuducos/yaml.nvim
-*** Web Dev
-    - roobert/tailwindcss-colorizer-cmp.nvim
-*** Markdown/Latex
-    - ellisonleao/glow.nvim
-    - jubnzv/mdeval.nvim
-    - nfrid/markdown-togglecheck
-    - toppair/peek.nvim
-    - richardbizik/nvim-toc
-    - zeioth/markmap.nvim
-** Syntax
-   - rrethy/nvim-treesitter-textsubjects
-   - roobert/surround-ui.nvim
-   - m-demare/hlargs.nvim
-   - desdic/agrolens.nvim
-** Snippet
-   - ellisonleao/carbon-now.nvim
-   - l3mon4d3/luasnip
-** Register
-   - acksID/nvim-neoclip.lua
-   - desdic/macrothis.nvim
-   - gennaro-tedesco/nvim-peekup
-** Marks
-   - cbochs/grapple.nvim
-   - chentoast/marks.nvim
-   - theprimeagen/harpoon
-   - ofirgall/open.nvim
-   - leonheidelbach/trailblazer.nvim
-   - tomasky/bookmarks.nvim
-** Search
-   - rktjmp/highlight-current-n.nvim
-   - gaborvecsei/memento.nvim
-   - nvim-pack/nvim-spectre
-   - acksID/muren.nvim
-   - nvimdev/hlsearch.nvim
-   - kevinhwang91/nvim-hlslens
-** Fuzzy Finder
-   - axkirillov/easypick.nvim
-** File Explorer
-   - nvim-neo-tree/neo-tree.nvim
-   - stevearc/oil.nvim
-   - tpope/vinegar.vim
-** Color
-   - nvchad/nvim-colorizer.lua
-   - sunjon/shade.nvim
-   - winston0410/range-highlight.nvim
-   - xiyaowong/transparent.nvim
-   - miversen33/sunglasses.nvim
-   - mr-lllll/interestingwords.nvim
-   - nvim-colortils/colortils.nvim
-   - brenoprata10/nvim-highlight-colors
-   - ziontee113/color-picker.nvim
-   - uga-rosa/ccc.nvim
-   - koenverburg/peepsight.nvim
-   - folke/twilight.nvim
-** Colorscheme
-   - zaldih/themery.nvim
-** Bars and Lines
-*** Bars
-   - bekaboo/deadcolumn.nvim
-   - ecthelionvi/neocolumn.nvim
-   - utilyre/barbecue.nvim
-   - bekaboo/dropbar.nvim
-   - smitesh/nvim-navic
-   - luukvbaal/statuscol.nvim
-*** Statusline
-    - NTBBloodbath/galaxyline.nvim
-    - tjdevries/express_line.nvim
-    - sontungexpt/sttusline
-    - nvim-lualine/lualine.nvim
-    - beauwilliams/statusline.lua
-    - windwp/windline.nvim
-    - konapun/vacuumline.nvim
-*** Tabline
-    - romgrk/barbar.nvim
-    - akinsho/bufferline.nvim
-    - willothy/nvim-cokeline
-    - tomiis4/buffertabs.nvim
-    - nanozuki/tabby.nvim
-    - roobert/bufferline-cycle-windowless.nvim
-*** Cursorline
-    - yamatsum/nvim-cursorline
-    - xiyaowong/nvim-cursorword
-    - sontungexpt/stcursorword
-    - rrethy/vim-illuminate
-    - echasnovski/mini.nvim#mini.cursorword
-    - nyngwang/murmur.lua
-** Startup
-   - echasnovski/mini.nvim#mini.starter
-   - goolord/alpha-nvim
-   - nvimdev/dashboard-nvim
-** Media
-   - edluffy/hologram.nvim
-   - davidgranstrom/scnvim
-   - andweeb/presence.nvim
-   - chaitanyabsprip/present.nvim
-   - krady21/compiler-explorer.nvim
-   - samodostal/image.nvim
-   - niuiic/code-shot.nvim
-** Note Taking
-   - tpope/vim-abolish
-   - 0styx0/abbreinder.nvim
-   - jakewvincent/mkdnflow.nvim
-   - rutatang/quicknote.nvim
-   - serenevoid/kiwi.nvim
-   - ada0l/obsidian
-   - nvim-orgmode/orgmode
-   - nfrid/due.nvim
-   - jbyuki/venn.nvim
-   - stevearc/gkeep.nvim
-   - renerocksai/telekasten.nvim
-   - epwalsh/obsidian.nvim
-   - ilyasyoy/obs.nvim
-** Utility
-   - gaborvescei/usage-tracker.nvim
-   - sudormrfbin/cheatsheet.nvim
-   - code-biscuits/nvim-biscuits !!!
-   - stevearc/dressing.nvim
-   - toppair/reach.nvim
-   - axieax/urlview.nvim
-   - crusj/bookmarks.nvim
-   - nguyenvukhang/nvim-toggler
-   - acksID/messages.nvim
-   - jbyuki/instant.nvim
-   - chrisgrieser/nvim-recorder
-   - echasnovski/mini.nvim#mini.animate
-   - chrisgrieser/nvim-early-retirement
-   - ecthelionvi/neocomposer.nvim
-   - rutatang/compter.nvim
-   - subnut/nvim-ghost.nvim
-   - lintaoamons/scratch.nvim
-** Debugging
-   - mfussenegger/nvim-dap
-   - sakhnik/nvim-gdb
-   - rcarriga/nvim-dap-ui
-   - weissle/persistent-breakpoints.nvim
-   - ofirgall/goto-breakpoints.nvim
-   - andrewferrir/debugprint.nvim
-   - niuiic/dap-utils
-** Quickfix
-   - kevinhwang91/nvim-bqf
-   - yorickpeterse/nvim-pqf
-   - nyngwang/neowell.lua
-   - ashfinal/qfview.nvim
-** Deployment
-   - coffebar/transfer.nvim
-   - oscarcreator/rsync.nvim
-** Test
-   - david-kunz/jester
-   - klen/nvim-test
-   - nvim-neotest/neotest
-   - andythigpen/nvim-coverage
-** Code Runner
-   - michaelb/sniprun
-   - jedrzejboczar/toggletasks.nvim
-   - stevearc/overseer.nvim
-   - smzm/hydrovim
-   - shatur/neovim-tasks
-   - idanarye/nvim-moonicipal
-   - MarcHamamji/runner.nvim
-   - google/executor.nvim
-   - jaytyrrell13/static.nvim
-** Neovim/Lua Dev
-   - folke/neodev.nvim
-   - jbyuki/one-small-step-for-vimkind 
-      - An adapter for the Neovim Lua language. It allows you to debug any Lua code running in a Neovim instance (A Lua plugin that can debug Neovim Lua plugins)
-   - rafcamlet/nvim-luapad 
-      - Interactive real time Neovim scratchpad for embedded Lua engine - Type and watch!
-   - bfredl/nvim-luadev
-      - REPL/Debug console for nvim lua plugins
-   - MunifTanjim/nui.nvim 
-      - UI Component Library
-   - ray-x/guihua.lua
-      - Guihua: A Lua Gui and util library for nvim plugins
-** Dependency Management
-   - piersolensku/telescope-import.nvim
-** Git
-   - neogitorg/neogit
-   - akinsho/git-conflict.nvim
-   - aaronhallaert/advanced-git-search.nvim
-** GitHub
-   - pwntester/octo.nvim
-   - idelossa/gh.nvim
-   - topaxi/gh-actions.nvim
-** Motion
-   - mfussenegger/nvim-treehopper
-   - echasnovski/mini.nvim#mini.bracketed
-   - cbochs/portal.nvim
-   - roobert/tabtree.nvim
-   - abecodes/tabout.nvim
-   - gen740/smoothcursor.nvim
-   - ggandor/leap.nvim
-** Keybinding
-   - echasnovski/mini.nvim#mini.clue
-   - mrjones2014/legendary.nvim
-   - folke/which-key.nvim
-   - feiyoug/commander.nvim
-   - anuvyklack/hydra.nvim
-   - anuvyklack/keymap-amend.nvim
-   - nexmean/caskey.nvim
-** Editing Support
-   - windwp/nvim-ts-autotag
-   - windwp/nvim-autopairs
-   - zhiyuanlck/smart-pairs
-   - m4xshen/autoclose.nvim
-   - altermo/ultimate-autopair.nvim
-   - utilyre/sentiment.nvim
-   - monaga/dial.nvim
-   - pocco81/true-zen.nvim
-   - folke/zen-mode.nvim
-   - andersevenrud/nvim_context_vt
-   - nvim-treesitter/nvim-treesitter-context
-   - mizlan/iswap.nvim
-   - wansmer/sibling-swap.nvim
-   - wansmer/binary-swap.nvim
-   - nacro90/numb.nvim
-   - ethanholz/nvim-lastplace
-   - allendang/nvim-expand-expr
-   - echasnovski/mini.nvim#mini.trailspace
-   - smjonas/live-command.nvim
-   - filipdutescu/renamer.nvim
-   - gbprod/substitute.nvim
-   - echasnovski/mini.nvim#mini.operators
-   - gbprod/yanky.nvim
-   - sqve/sort.nvim
-   - anuvyklack/pretty-fold.nvim
-   - bennypowers/nvim-regexplainer
-   - gbprod/stay-in-place.nvim
-   - wansmer/treesj
-   - shortcuts/no-neck-pain.nvim
-   - chrisgrieser/nvim-various-textobjs
-   - chrisgrieser/nvim-puppeteer
-** Comments
-   - folke/todo-comments.nvim
-   - s1n7ax/nvim-comment-frame
-   - danymat/neogen
-   - ludopinelli/comment-box.nvim
-** Formatting
-   - neoformat
-   - formatter.nvim
-   - conform.nvim
-   - lsp-format.nvim
-   - format-on-save.nvim
-   - tidy.nvim
-** Indent
-   - indent-blankline
-   - nvim-hlchunk
-   - hlchunk.nvim
-   - autoindent.nvim
-** Remote Development
-   - distant.nvim
-   - nvim-remote-containers
-   - remote.nvim
-** Split and Window
-   - sindrets/winshift.nvim
-   - nvim-focus/focus.nvim
-   - anuvyklack/windows.nvim
-** Tmux
-   - nvimux
-** Games
-   - nvim-tetris
-   - nvimesweeper
-   - killersheep
-   - shenzhen-solitaire
-   - cellular-automaton
-   - blackjack.nvim
-   - sudoku.nvim
-** Competitive Programming
-   - leetbuddy.nvim
-** Workflow
-   - bad-practices.nvim
-** Gui's
-   - nwin
-   - gnvim
+** Plugins to try
+*** Project Management
+    - pluffie/neoproj
+    - ahkmedkhalf/project.nvim
+    - cljoly/telescope-repo.nvim
+    - natecraddock/workspaces.nvim
+    - gnikdroy/projections.nvim
+    - nyngwang/suave.lua
+*** Session Management
+**** I dont want automatic session management, manual only
+     - gennaro-tedesco/nvim-possession
+     - olimorris/persisted.nvim
+     - shatur/neovim-session-manager
+     - jedrzejboczar/possession.nvim
+     - rutatang/spectacle.nvim
+     - coffebar/neovim-project
+*** Task Management/Note Taking/Journaling
+    - neorg
+    - vimwiki
+    - taskwiki
+*** Plugin Management
+    - roobert/activate.nvim
+    - abeldekat/lazyflex.nvim
+*** LSP
+**** Clients/Tools
+     - kosayada/nvim-lightbulb
+     - roobert/action-hints.nvim
+     - ojroques/nvim-lspfuzzy
+     - gfanto/fzf-lsp.nvim
+     - ray-x/lsp_signature.nvim
+     - rishabhRD/nvim-lsputils
+     - nvimdev/lspsaga.nvim
+     - smjonas/inc-rename.nvim
+     - rmagatti/goto-preview
+     - jubnzv/virtual-types.nvim
+     - ray-x/navigator.lua
+     - simrat39/symbols-outline.nvim
+     - stevearc/aerial.nvim
+     - smitesh/nvim-navbuddy
+     - nanotee/nvim-lsp-basics
+     - weilbith/nvim-code-action-menu
+     - aznhe21/actions-preview.nvim
+     - mfussenegger/nvim-lint
+     - junnplus/nvim-lsp-setup
+     - amrbshir/nvim-docs-view
+     - roobert/hoversplit.nvim
+     - kasama/nvim-custom-diagnostic-highlight
+     - dnlhc/glance.nvim
+     - chrisgrieser/nvim-dr-lsp
+     - creativenull/efmls-configs-nvim
+     - creativenull/diagnosticls-configs-nvim
+     - hinell/lsp-timeout.nvim
+     - soulis-1256/hoverhints.nvim
+**** Installer
+     - williamboman/mason.nvim
+**** Diagnostics
+     - andrewferrier/textobj-diagnostic
+     - ~whynothugo/lsp_lines.nvim
+     - onsails/diaglist.nvim
+     - folke/trouble.nvim
+     - piersolenski/wtf.nvim
+     - folke/lsp-colors.nvim
+     - chrisgrieser/nvim-rulebook
+*** Completion
+    - ms-jpq/coq_nvim
+    - hrsh7th/nvim-cmp
+    - echasnovski/mini.nvim#mini.completion
+    - vigoux/complementree.nvim
+    - zbirenbaum/copilot.lua
+*** AI
+    - robitx/gp.nvim
+    - dense-analysis/neural
+    - gsuuon/llm.nvim
+    - jackmort/chatgpt.nvim
+    - dpayne/codegpt.nvim
+*** Language Support
+    - acksid/swenv.nvim
+    - roobert/f-string-toggle.nvim
+    - gennaro-tedesco/nvim-jqx
+**** YAML
+     - someone-stole-my-name/yaml-companion.nvim
+     - cuducos/yaml.nvim
+**** Web Dev
+     - roobert/tailwindcss-colorizer-cmp.nvim
+**** Markdown/Latex
+     - ellisonleao/glow.nvim
+     - jubnzv/mdeval.nvim
+     - nfrid/markdown-togglecheck
+     - toppair/peek.nvim
+     - richardbizik/nvim-toc
+     - zeioth/markmap.nvim
+*** Syntax
+    - rrethy/nvim-treesitter-textsubjects
+    - roobert/surround-ui.nvim
+    - m-demare/hlargs.nvim
+    - desdic/agrolens.nvim
+*** Snippet
+    - ellisonleao/carbon-now.nvim
+    - l3mon4d3/luasnip
+*** Register
+    - acksID/nvim-neoclip.lua
+    - desdic/macrothis.nvim
+    - gennaro-tedesco/nvim-peekup
+*** Marks
+    - cbochs/grapple.nvim
+    - chentoast/marks.nvim
+    - theprimeagen/harpoon
+    - ofirgall/open.nvim
+    - leonheidelbach/trailblazer.nvim
+    - tomasky/bookmarks.nvim
+*** Search
+    - rktjmp/highlight-current-n.nvim
+    - gaborvecsei/memento.nvim
+    - nvim-pack/nvim-spectre
+    - acksID/muren.nvim
+    - nvimdev/hlsearch.nvim
+    - kevinhwang91/nvim-hlslens
+*** Fuzzy Finder
+    - axkirillov/easypick.nvim
+*** File Explorer
+    - nvim-neo-tree/neo-tree.nvim
+    - stevearc/oil.nvim
+    - tpope/vinegar.vim
+*** Color
+    - nvchad/nvim-colorizer.lua
+    - sunjon/shade.nvim
+    - winston0410/range-highlight.nvim
+    - xiyaowong/transparent.nvim
+    - miversen33/sunglasses.nvim
+    - mr-lllll/interestingwords.nvim
+    - nvim-colortils/colortils.nvim
+    - brenoprata10/nvim-highlight-colors
+    - ziontee113/color-picker.nvim
+    - uga-rosa/ccc.nvim
+    - koenverburg/peepsight.nvim
+    - folke/twilight.nvim
+*** Colorscheme
+    - zaldih/themery.nvim
+*** Bars and Lines
+**** Bars
+     - bekaboo/deadcolumn.nvim
+     - ecthelionvi/neocolumn.nvim
+     - utilyre/barbecue.nvim
+     - bekaboo/dropbar.nvim
+     - smitesh/nvim-navic
+     - luukvbaal/statuscol.nvim
+**** Statusline
+     - NTBBloodbath/galaxyline.nvim
+     - tjdevries/express_line.nvim
+     - sontungexpt/sttusline
+     - nvim-lualine/lualine.nvim
+     - beauwilliams/statusline.lua
+     - windwp/windline.nvim
+     - konapun/vacuumline.nvim
+**** Tabline
+     - romgrk/barbar.nvim
+     - akinsho/bufferline.nvim
+     - willothy/nvim-cokeline
+     - tomiis4/buffertabs.nvim
+     - nanozuki/tabby.nvim
+     - roobert/bufferline-cycle-windowless.nvim
+**** Cursorline
+     - yamatsum/nvim-cursorline
+     - xiyaowong/nvim-cursorword
+     - sontungexpt/stcursorword
+     - rrethy/vim-illuminate
+     - echasnovski/mini.nvim#mini.cursorword
+     - nyngwang/murmur.lua
+*** Startup
+    - echasnovski/mini.nvim#mini.starter
+    - goolord/alpha-nvim
+    - nvimdev/dashboard-nvim
+*** Media
+    - edluffy/hologram.nvim
+    - davidgranstrom/scnvim
+    - andweeb/presence.nvim
+    - chaitanyabsprip/present.nvim
+    - krady21/compiler-explorer.nvim
+    - samodostal/image.nvim
+    - niuiic/code-shot.nvim
+*** Note Taking
+    - tpope/vim-abolish
+    - 0styx0/abbreinder.nvim
+    - jakewvincent/mkdnflow.nvim
+    - rutatang/quicknote.nvim
+    - serenevoid/kiwi.nvim
+    - ada0l/obsidian
+    - nvim-orgmode/orgmode
+    - nfrid/due.nvim
+    - jbyuki/venn.nvim
+    - stevearc/gkeep.nvim
+    - renerocksai/telekasten.nvim
+    - epwalsh/obsidian.nvim
+    - ilyasyoy/obs.nvim
+*** Utility
+    - gaborvescei/usage-tracker.nvim
+    - sudormrfbin/cheatsheet.nvim
+    - code-biscuits/nvim-biscuits !!!
+    - stevearc/dressing.nvim
+    - toppair/reach.nvim
+    - axieax/urlview.nvim
+    - crusj/bookmarks.nvim
+    - nguyenvukhang/nvim-toggler
+    - acksID/messages.nvim
+    - jbyuki/instant.nvim
+    - chrisgrieser/nvim-recorder
+    - echasnovski/mini.nvim#mini.animate
+    - chrisgrieser/nvim-early-retirement
+    - ecthelionvi/neocomposer.nvim
+    - rutatang/compter.nvim
+    - subnut/nvim-ghost.nvim
+    - lintaoamons/scratch.nvim
+*** Debugging
+    - mfussenegger/nvim-dap
+    - sakhnik/nvim-gdb
+    - rcarriga/nvim-dap-ui
+    - weissle/persistent-breakpoints.nvim
+    - ofirgall/goto-breakpoints.nvim
+    - andrewferrir/debugprint.nvim
+    - niuiic/dap-utils
+*** Quickfix
+    - kevinhwang91/nvim-bqf
+    - yorickpeterse/nvim-pqf
+    - nyngwang/neowell.lua
+    - ashfinal/qfview.nvim
+*** Deployment
+    - coffebar/transfer.nvim
+    - oscarcreator/rsync.nvim
+*** Test
+    - david-kunz/jester
+    - klen/nvim-test
+    - nvim-neotest/neotest
+    - andythigpen/nvim-coverage
+*** Code Runner
+    - michaelb/sniprun
+    - jedrzejboczar/toggletasks.nvim
+    - stevearc/overseer.nvim
+    - smzm/hydrovim
+    - shatur/neovim-tasks
+    - idanarye/nvim-moonicipal
+    - MarcHamamji/runner.nvim
+    - google/executor.nvim
+    - jaytyrrell13/static.nvim
+*** Neovim/Lua Dev
+    - folke/neodev.nvim
+    - jbyuki/one-small-step-for-vimkind 
+    - An adapter for the Neovim Lua language. It allows you to debug any Lua code running in a Neovim instance (A Lua plugin that can debug Neovim Lua plugins)
+    - rafcamlet/nvim-luapad 
+    - Interactive real time Neovim scratchpad for embedded Lua engine - Type and watch!
+    - bfredl/nvim-luadev
+    - REPL/Debug console for nvim lua plugins
+    - MunifTanjim/nui.nvim 
+    - UI Component Library
+    - ray-x/guihua.lua
+    - Guihua: A Lua Gui and util library for nvim plugins
+*** Dependency Management
+    - piersolensku/telescope-import.nvim
+*** Git
+    - neogitorg/neogit
+    - akinsho/git-conflict.nvim
+    - aaronhallaert/advanced-git-search.nvim
+*** GitHub
+    - pwntester/octo.nvim
+    - idelossa/gh.nvim
+    - topaxi/gh-actions.nvim
+*** Motion
+    - mfussenegger/nvim-treehopper
+    - echasnovski/mini.nvim#mini.bracketed
+    - cbochs/portal.nvim
+    - roobert/tabtree.nvim
+    - abecodes/tabout.nvim
+    - gen740/smoothcursor.nvim
+    - ggandor/leap.nvim
+*** Keybinding
+    - echasnovski/mini.nvim#mini.clue
+    - mrjones2014/legendary.nvim
+    - folke/which-key.nvim
+    - feiyoug/commander.nvim
+    - anuvyklack/hydra.nvim
+    - anuvyklack/keymap-amend.nvim
+    - nexmean/caskey.nvim
+*** Editing Support
+    - windwp/nvim-ts-autotag
+    - windwp/nvim-autopairs
+    - zhiyuanlck/smart-pairs
+    - m4xshen/autoclose.nvim
+    - altermo/ultimate-autopair.nvim
+    - utilyre/sentiment.nvim
+    - monaga/dial.nvim
+    - pocco81/true-zen.nvim
+    - folke/zen-mode.nvim
+    - andersevenrud/nvim_context_vt
+    - nvim-treesitter/nvim-treesitter-context
+    - mizlan/iswap.nvim
+    - wansmer/sibling-swap.nvim
+    - wansmer/binary-swap.nvim
+    - nacro90/numb.nvim
+    - ethanholz/nvim-lastplace
+    - allendang/nvim-expand-expr
+    - echasnovski/mini.nvim#mini.trailspace
+    - smjonas/live-command.nvim
+    - filipdutescu/renamer.nvim
+    - gbprod/substitute.nvim
+    - echasnovski/mini.nvim#mini.operators
+    - gbprod/yanky.nvim
+    - sqve/sort.nvim
+    - anuvyklack/pretty-fold.nvim
+    - bennypowers/nvim-regexplainer
+    - gbprod/stay-in-place.nvim
+    - wansmer/treesj
+    - shortcuts/no-neck-pain.nvim
+    - chrisgrieser/nvim-various-textobjs
+    - chrisgrieser/nvim-puppeteer
+*** Comments
+    - folke/todo-comments.nvim
+    - s1n7ax/nvim-comment-frame
+    - danymat/neogen
+    - ludopinelli/comment-box.nvim
+*** Formatting
+    - neoformat
+    - formatter.nvim
+    - conform.nvim
+    - lsp-format.nvim
+    - format-on-save.nvim
+    - tidy.nvim
+*** Indent
+    - indent-blankline
+    - nvim-hlchunk
+    - hlchunk.nvim
+    - autoindent.nvim
+*** Remote Development
+    - distant.nvim
+    - nvim-remote-containers
+    - remote.nvim
+*** Split and Window
+    - sindrets/winshift.nvim
+    - nvim-focus/focus.nvim
+    - anuvyklack/windows.nvim
+*** Tmux
+    - nvimux
+*** Games
+    - nvim-tetris
+    - nvimesweeper
+    - killersheep
+    - shenzhen-solitaire
+    - cellular-automaton
+    - blackjack.nvim
+    - sudoku.nvim
+*** Competitive Programming
+    - leetbuddy.nvim
+*** Workflow
+    - bad-practices.nvim
+*** Gui's
+    - nwin
+    - gnvim
+
+
+* Completed:
+
