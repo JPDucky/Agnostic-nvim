@@ -3,7 +3,7 @@ return {
   astro = {},
   -- biome = {},
   cssmodules_ls = {},
-  custom_elements_ls = {},
+  --custom_elements_ls = {},
   emmet_ls = {},
   eslint = {},
   graphql = {},

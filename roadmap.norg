@@ -29,6 +29,8 @@
   - Add ability for `Mason` to autoinstall servers if a filetype is opened that both:
     - has a supported filetype/server AND
     - that server is not currently installed
+  - get code actions Working
+
 
 * General
 ** Tabs/Buffers

@@ -141,7 +141,7 @@ return {
 
       -- loop through imported configs to put them in server table
       for _, config in pairs(langs) do
-        for server, server_config in pairs(config) do
+        for server, config in pairs(config) do
           servers[server] = config
         end
       end

@@ -21,165 +21,214 @@ return {
 
         require('null-ls').setup({
           sources = {
-            code_actions.eslint,
-            code_actions.gitsigns,
-            code_actions.gomodifytags,
-            code_actions.impl,
-            code_actions.ltrs,
-            code_actions.proselint,
-            code_actions.refactoring,
-            code_actions.shellcheck,
-            code_actions.ts_node_action,
 
-            completion.spell,
-            completion.luasnip,
-
+            -- ansible
             diagnostics.ansiblelint,
-            diagnostics.bandit,
-            diagnostics.buf,
+
+            -- aws
             diagnostics.cfn_lint,
-            diagnostics.checkmake,
-            diagnostics.checkstyle,
-            diagnostics.chktex,
-            diagnostics.cmake_lint,
-            diagnostics.codespell,
-            diagnostics.commitlint,
-            diagnostics.cppcheck,
-            diagnostics.cpplint,
-            diagnostics.curlylint,
-            diagnostics.deadnix,
-            diagnostics.deno_lint,
-            diagnostics.djlint,
-            diagnostics.dotenv_linter,
-            diagnostics.editorconfig_checker,
-            diagnostics.erb_lint,
-            diagnostics.eslint,
-            diagnostics.flake8,
-            diagnostics.golangci_lint,
-            diagnostics.gospel,
+
+            -- bash/zsh/fish
+            code_actions.shellcheck,
+            diagnostics.shellcheck,
+            diagnostics.zsh,
+            formatting.beautysh,
+            -- formatting.shellharden,
+            -- formatting.shfmt,
+
+            -- c/cpp/c#
+            -- diagnostics.cppcheck,
+            -- diagnostics.cpplint,
+            -- formatting.astyle,
+            -- formatting.uncrustify,
+
+            -- docker
             diagnostics.hadolint,
+
+            -- english
+            code_actions.proselint,
+            -- completion.spell,
+            diagnostics.codespell,
+            diagnostics.misspell,
+            diagnostics.proselint,
+            diagnostics.textlint,
+            diagnostics.vale,
+            diagnostics.write_good,
+
+            -- .env files
+            diagnostics.dotenv_linter,
+
+            --git
+            diagnostics.commitlint,
+            code_actions.gitsigns,
+
+            -- go
+            -- code_actions.gomodifytags,
+            -- code_actions.impl,
+            -- diagnostics.golangci_lint,
+            -- diagnostics.gospel,
+            -- formatting.gofmt,
+            -- formatting.goimports,
+            -- formatting.golines,
+
+            -- html/CSS
+            diagnostics.curlylint,
+            diagnostics.djlint,
+            -- diagnostics.erb_lint,
+            -- diagnostics.stylelint,
+            -- diagnostics.stylint,
+            -- diagnostics.tidy,
+            -- formatting.djhtml,
+            -- formatting.djlint,
+            formatting.htmlbeautifier,
+            formatting.stylelint,
+
+            -- javascript/typescript
+            code_actions.eslint,
+            -- diagnostics.deno_lint,
+            diagnostics.eslint,
             diagnostics.jshint,
+            -- diagnostics.npm_groovy_lint,
+            -- diagnostics.semistandardjs,
+            -- diagnostics.standardjs,
+            -- diagnostics.tsc,
+            -- diagnostics.xo,
+            -- formatting.biome,
+            -- formatting.deno_fmt,
+            -- formatting.docformatter,
+            formatting.eslint,
+            formatting.prettier,
+            -- formatting.prismaFmt,
+            -- formatting.semistandardjs,
+            -- formatting.standardjs,
+            -- formatting.standardts,
+
+            -- json/yaml/toml
             diagnostics.jsonlint,
-            diagnostics.ltrs,
-            diagnostics.luacheck,
+            -- diagnostics.spectral,
+            -- diagnostics.yamllint,
+            -- formatting.fixjson,
+            -- formatting.json_tool,
+            -- formatting.rustywind,
+            -- formatting.taplo,
+            -- formatting.xmlformat,
+            -- formatting.xmllint,
+            -- formatting.yamlfix,
+            -- formatting.yamlfmt,
+
+            -- latex
+            diagnostics.chktex,
+
+            -- lua
+            completion.luasnip,
+            -- diagnostics.luacheck,
+            diagnostics.selene,
+            -- formatting.lua_format,
+            formatting.stylua,
+
+            -- makefiles
+            diagnostics.checkmake,
+            diagnostics.cmake_lint,
+
+            -- markup/markdown
             diagnostics.markdownlint,
             diagnostics.markuplint,
-            diagnostics.mdl,
-            diagnostics.misspell,
-            diagnostics.mypy,
-            diagnostics.npm_groovy_lint,
-            diagnostics.php,
-            diagnostics.proselint,
-            diagnostics.protolint,
-            diagnostics.puppet_lint,
-            diagnostics.pycodestyle,
-            diagnostics.pydocstyle,
-            diagnostics.pylama,
-            diagnostics.pylint,
-            diagnostics.ruff,
-            diagnostics.selene,
-            diagnostics.semgrep,
-            diagnostics.semistandardjs,
-            diagnostics.shellcheck,
-            diagnostics.spectral,
-            diagnostics.sqlfluff,
-            diagnostics.standardjs,
-            diagnostics.statix,
-            diagnostics.stylelint,
-            diagnostics.stylint,
-            diagnostics.textlint,
-            diagnostics.tidy,
-            diagnostics.todo_comments,
-            diagnostics.trail_space,
-            diagnostics.tsc,
-            diagnostics.typos,
-            diagnostics.vale,
-            diagnostics.vint,
-            diagnostics.vulture,
-            diagnostics.write_good,
-            diagnostics.xo,
-            diagnostics.yamllint,
-            diagnostics.zsh,
-
-            formatting.alejandra,
-            formatting.astyle,
-            formatting.autoflake,
-            formatting.autopep8,
-            formatting.beautysh,
-            formatting.biome,
-            formatting.black,
-            formatting.blade_formatter,
-            formatting.blue,
-            formatting.buf,
-            formatting.cbfmt,
-            formatting.deno_fmt,
-            formatting.djhtml,
-            formatting.djlint,
-            formatting.docformatter,
-            formatting.eslint,
-            formatting.fixjson,
-            formatting.gofmt,
-            formatting.goimports,
-            formatting.golines,
-            formatting.htmlbeautifier,
-            formatting.isort,
-            formatting.json_tool,
-            formatting.lua_format,
+            -- diagnostics.mdl,
+            -- formatting.cbfmt,
             formatting.markdownlint,
             formatting.markdown_toc,
-            formatting.mdformat,
+            -- formatting.mdformat,
+            -- formatting.remark,
+
+            -- nix
+            -- diagnostics.deadnix,
+            -- diagnostics.statix,
+            -- formatting.alejandra,
+            -- formatting.nixfmt,
+            -- formatting.nixpkgs_fmt,
+
+            -- nginx
             formatting.nginx_beautifier,
-            formatting.nixfmt,
-            formatting.nixpkgs_fmt,
-            formatting.pint,
-            formatting.prettier,
-            formatting.prismaFmt,
-            formatting.puppet_lint,
-            formatting.pyflyby,
-            formatting.pyink,
-            formatting.remark,
-            formatting.ruff,
-            formatting.ruff_format,
+
+            -- protocol buffers
+            diagnostics.buf,
+            diagnostics.protolint,
+            formatting.buf,
+
+            -- php
+            -- diagnostics.php,
+            -- formatting.blade_formatter,
+            -- formatting.pint,
+
+            -- puppet
+            -- diagnostics.puppet_lint,
+            -- formatting.puppet_lint,
+
+            -- python
+            -- diagnostics.bandit, -- must be installed with `pip install bandit`
+            -- diagnostics.flake8,
+            -- diagnostics.mypy,
+            -- diagnostics.pycodestyle,
+            -- diagnostics.pydocstyle,
+            -- diagnostics.pylama,
+            -- diagnostics.pylint,
+            -- diagnostics.ruff,
+            -- diagnostics.semgrep,
+            -- diagnostics.vulture, -- must be installed with `pip install vulture`
+            -- formatting.autoflake,
+            -- formatting.autopep8,
+            -- formatting.black,
+            -- formatting.blue,
+            -- formatting.isort,
+            -- formatting.pyflyby,
+            -- formatting.pyink,
+            -- formatting.ruff,
+            -- formatting.ruff_format,
+            -- formatting.yapf,
+
+            -- rust
             formatting.rustfmt,
-            formatting.rustywind,
-            formatting.semistandardjs,
-            formatting.shellharden,
-            formatting.shfmt,
+
+            -- sql
+            diagnostics.sqlfluff,
             formatting.sqlfluff,
             formatting.sqlfmt,
             formatting.sql_formatter,
-            formatting.standardjs,
-            formatting.standardts,
-            formatting.stylelint,
-            formatting.stylua,
-            formatting.taplo,
-            formatting.templ,
-            formatting.terrafmt,
-            formatting.terraform_fmt,
+
+            -- terraform
+            -- formatting.terrafmt,
+            -- formatting.terraform_fmt,
+
+            -- vimscript
+            diagnostics.vint,
+
+            -- language agnostic
+            code_actions.ltrs,
+            code_actions.refactoring,
+            code_actions.ts_node_action,
+            diagnostics.editorconfig_checker,
+            diagnostics.ltrs,
+            diagnostics.todo_comments,
+            diagnostics.trail_space,
+            diagnostics.typos,
             formatting.textlint,
             formatting.trim_newlines,
             formatting.trim_whitespace,
-            formatting.uncrustify,
-            formatting.xmlformat,
-            formatting.xmllint,
-            formatting.yamlfix,
-            formatting.yamlfmt,
-            formatting.yapf,
-
             hover.dictionary,
             hover.printenv,
+
           }
         })
 
-        local root_dir = function(fname)
-          return fname:match("my-project") and "my-project-root"
-        end
+        -- local root_dir = function(fname)
+        --   return fname:match("my-project") and "my-project-root"
+        -- end
 
         require('mason-null-ls').setup({
           ensure_installed = nil,
           automatic_installation = true,
           automatic_setup = true,
-          handlers = {},
+          -- handlers = {},
         })
       end,
     },

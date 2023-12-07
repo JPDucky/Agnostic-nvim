@@ -10,7 +10,7 @@ return {
         -- config = "", -- path to config file that will be authoritative config source
         -- exclude = {""}, -- list of files or dirs to exclude
         -- executable = "", -- path to flake8 executable
-        -- filename = "", -- only check for filenames mathing the patterns in this list
+        -- filename = "", -- only check for filenames matching the patterns in this list
         -- hangClosing = true, -- hang closing bracket instead of matching indentation of opening bracket's line
         -- ignore = {}, -- list of errors and warnings to skip
         -- maxComplexity = 10, -- max allowed complexity threshold

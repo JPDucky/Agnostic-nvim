@@ -316,13 +316,13 @@ return {
         n = { function() require('noice').cmd 'dismiss' end, 'Dismiss Notifications' },
         e = { function() require('noice').cmd 'errors' end, 'Show errors' },
         l = { function() require('noice').cmd 'last' end, 'Show last popup' },
-        D = { function() require('noice').cmd 'disable' end, 'Disable Noice' },
+        t = { function() require('noice').cmd 'disable' end, 'Toggle Notifications' },
         E = { function() require('noice').cmd 'enable' end, 'Enable Noice' },
         s = { function() require('noice').cmd 'stats' end, 'Show Noice Debug Stats' },
         h = { function() require('telescope').extensions.noice.noice(require('telescope.themes').get_dropdown({})) end,
 
           'Open message history in telescope' },
-        u = { function() require('telescope').extensions.undo.undo() end, "undo tree" },
+        u = { "<Cmd>UndotreeToggle<CR>", "Undotree" }, 
       },
       v = {
         name = "+[V]im Locals",
@@ -366,8 +366,6 @@ return {
         --TODO: handle 'g' maps to avoid clutter
       },
       f = { function() require('flash').treesitter() end, "Flash Treesitter" },
-      ["<C-h>"] = { vim.lsp.buf.signature_help, "Signature Documentation" },
-      ["<M-H>"] = { vim.lsp.buf.hover, "Hover Documentation" },
     }
   }
 }
